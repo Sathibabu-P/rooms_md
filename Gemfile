@@ -22,15 +22,26 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'materialize-sass'
+gem 'font-awesome-rails'
+gem 'simple_form'
+gem 'owlcarousel-rails'
+gem "omniauth"
+gem "devise"
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+gem "omniauth-twitter"
+gem "paperclip"
+gem 'public_activity'
+gem 'friendly_id'
+gem 'ratyrate'
+gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'jquery-turbolinks'
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+gem 'roo'
+gem "iconv", "~> 1.0.3"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

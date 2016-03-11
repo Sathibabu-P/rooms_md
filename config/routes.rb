@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   
+  resources :listings
+  get 'user_dashboard' => 'user_dashboard#index'
+  get 'user_messages' => 'user_dashboard#messages'
+
   get '/admin' => 'dashboard#index'
 
  
