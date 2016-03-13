@@ -1,4 +1,32 @@
 
-<%= render 'form' %>
+<div class="row"> 
+    <div class="col s12 m12">
+     
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="col s12 m3" style="">
+    
+        
+           <ul class="collection">
+            <li class="collection-item">
+            	<%= link_to "Profile", user_dashboard_path %>
+            </li>
+            <li class="collection-item">
+            	<%= link_to "Messages", user_messages_path %>
+            </li>
+             <li class="collection-item">
+            	<%= link_to "Listings", listings_path %>
+            </li>
+             <li class="collection-item">
+            	<%= link_to "Profile", user_dashboard_path %>
+            </li>
+          </ul>
+         
+     
+    </div>
+     <div class="col s12 m9" style="">
+		<%= render 'form' %>
+	</div	
 
 <%= link_to 'Back', listings_path %>

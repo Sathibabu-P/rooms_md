@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   
+  devise_for :admins
   devise_for :users
   get 'profiles/edit'
 
   resources :rules
   resources :amenities
   resources :listings
+  resources :profiles
   get 'user_dashboard' => 'user_dashboard#index'
   get 'user_messages' => 'user_dashboard#messages'
 
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
 
   delete '/delpic' => "listings#delpic"
 
+   get 'user_dashboard'  => "user_dashboard#index", as: 'user_profile'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

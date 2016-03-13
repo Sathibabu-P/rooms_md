@@ -1,38 +1,44 @@
-<p id="notice"><%= notice %></p>
+
 
 <!-- Main START -->
 
 
-
-<div class="container">
-
-
+<div class="row"> 
+    <div class="col s12 m12">
+     
+    </div>
+  </div>
   <div class="row"> 
-    <div class="col s12 m8">    
-        <div class="card-panel grey lighten-5 z-depth-1">
-          <div class="row valign-wrapper">
-             <div class="demo">
-              <ul id="lightSlider">
-                <% unless @pictures.empty? %>
-                  <% @pictures.each do |pic| %>  
+    <div class="col s12 m3" style="">
+    
+        
+           <ul class="collection">
+            <li class="collection-item">
+              <%= link_to "Profile", user_dashboard_path %>
+            </li>
+            <li class="collection-item">
+              <%= link_to "Messages", user_messages_path %>
+            </li>
+             <li class="collection-item">
+              <%= link_to "Listings", listings_path %>
+            </li>
+             <li class="collection-item">
+              <%= link_to "Profile", user_dashboard_path %>
+            </li>
+          </ul>
+         
+     
+    </div>
 
-                  <li data-thumb="<%=pic.file.url(:thumb) %>">
-                      <img src="<%=pic.file.url(:medium) %> " />
-                  </li>
-                   <% end %>
-                <% end %>
-                </ul>
-            </div>
-          </div>
-        </div>
 
-
-       
+ <div class="col s12 m9">    
+  <div class="row"> 
+      <div class="col s12 m12">          
           <div class="col s12 card-panel">
             <ul class="tabs">
               <li class="tab col s3"><a class="active" href="#test1">Room Info</a></li>
               <li class="tab col s3"><a  href="#test2">Test 2</a></li>           
-              <li class="tab col s3"><a href="#test4">Test 4</a></li>
+              <li class="tab col s3"><a href="#test4">Gallery</a></li>
             </ul>
           </div>
           <div id="test1" class="col s12 card-panel">
@@ -69,46 +75,35 @@
 		             
 		            </ul>          
 		           
-          </div>
-       
-
-         
+          </div>         
           <div id="test2" class="col s12 card-panel">Test 2</div>        
-          <div id="test4" class="col s12 card-panel">Test 4</div>
-    </div>
+          <div id="test4" class="col s12 card-panel">
 
-    <div class="col s12 m4">
-   
-        <div class="card-panel grey lighten-5 z-depth-1">
-          <div class="row valign-wrapper">
-            <div class="col s2">
-              <img src="images/yuna.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-            </div>
-            <div class="col s10">
-              <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-            </div>
+              <% unless @pictures.empty? %>
+                  <% @pictures.each do |pic| %>   
+
+                  
+                  <div class="col m4">
+                    <div class="card">
+                      <div class="card-image" >
+                         <%= image_tag pic.file.url(:medium) %>  
+                       </div>
+                      
+                    </div>
+                  </div>
+              
+
+                                 
+                  <% end %>
+                <% end %>
+
           </div>
-        </div>
+      </div>
+      
 
 
-          <div class="card-panel grey lighten-5 z-depth-1">
-          <div class="row valign-wrapper">
-            <div class="col s2">
-              <img src="images/yuna.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-            </div>
-            <div class="col s10">
-              <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-            </div>
-          </div>
-        </div>
-
-    </div>
-
-  </div>  
+</div>
+ 
 </div>
 <!-- Main END --> 
 
