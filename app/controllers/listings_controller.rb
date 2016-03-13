@@ -15,10 +15,14 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
+    @amenities = Amenity.all
+    @rules = Rule.all
+    @pictures = @listing.pictures
   end
 
   # GET /listings/1/edit
   def edit
+   
   end
 
   # POST /listings
@@ -28,6 +32,14 @@ class ListingsController < ApplicationController
 
     respond_to do |format|
       if @listing.save
+
+        if params[:pictures]
+        #===== The magic is here ;)
+          params[:pictures].each { |image|
+            @listing.pictures.create(file: image)
+          }
+        end
+
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
         format.json { render :show, status: :created, location: @listing }
       else
@@ -40,8 +52,15 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
+
     respond_to do |format|
-      if @listing.update(listing_params)
+      if @listing.update_attributes(listing_params)
+         if params[:pictures]
+        #===== The magic is here ;)
+          params[:pictures].each { |image|            
+            @listing.pictures.create(file: image)
+          }       
+        end
         format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
         format.json { render :show, status: :ok, location: @listing }
       else
@@ -61,10 +80,21 @@ class ListingsController < ApplicationController
     end
   end
 
+
+   def delpic
+    @pic = Picture.find(params[:pid])
+    @listing = Listing.find(params[:lid])
+    @pic.destroy
+    redirect_to edit_listing_path(@listing)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
       @listing = Listing.find(params[:id])
+      @amenities = Amenity.all
+      @rules = Rule.all
+      @pictures = @listing.pictures
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

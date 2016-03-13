@@ -17,4 +17,5 @@
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require materialize-sprockets
+//= require lightslider.js
 

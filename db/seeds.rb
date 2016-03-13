@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+rules = Rule.create([{ name: "Pet's not allwoed" }, { name: 'Inside someking not allowed' }, {name: "Drinking allowed"}])
+amenities = Amenity.create([{ name: "TV" }, { name: 'Wifi' }, {name: "Parking"}])
+ 
