@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313090042) do
+ActiveRecord::Schema.define(version: 20160315165810) do
+
+  create_table "admin_areas", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "admin_cities", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "admin_listings", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",              limit: 255, default: "", null: false
@@ -41,6 +59,24 @@ ActiveRecord::Schema.define(version: 20160313090042) do
 
   add_index "amenities_listings", ["amenity_id"], name: "index_amenities_listings_on_amenity_id", using: :btree
   add_index "amenities_listings", ["listing_id"], name: "index_amenities_listings_on_listing_id", using: :btree
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "pincode",    limit: 255
+    t.string   "latitude",   limit: 255
+    t.string   "longitude",  limit: 255
+    t.integer  "city_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "areas", ["city_id"], name: "index_areas_on_city_id", using: :btree
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "listings", force: :cascade do |t|
     t.string   "title",                  limit: 255

@@ -23,7 +23,7 @@
           </ul>  
     </div>
     <%= link_to 'New Listing', new_listing_path %>
-      <div class="col s12 m9">
+    <div class="col s12 m9">
         <% @listings.each do |listing| %>
         <% @pic = listing.pictures.first%>   
           <div class="card-panel grey lighten-5" style="padding: 10px">

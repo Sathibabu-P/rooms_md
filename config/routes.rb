@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   
+  resources :areas
+  resources :cities
   devise_for :admins
   devise_for :users
   get 'profiles/edit'
@@ -8,6 +10,11 @@ Rails.application.routes.draw do
   resources :rules
   resources :amenities
   resources :listings
+
+
+  get '/listing/:id' => "home#show" , as:'show_listing'
+
+
   resources :profiles
   get 'user_dashboard' => 'user_dashboard#index'
   get 'user_messages' => 'user_dashboard#messages'

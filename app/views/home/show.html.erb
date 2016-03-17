@@ -1,0 +1,119 @@
+
+
+<!-- Main START -->
+
+
+  	<div class="row container">  
+      <div class="col s12 m8"> 
+      	
+	      <div class="card-panel">
+	      	<p card-title><%=@listing.title%>
+	      	<span class="pull-right"><%=@listing.rent%></span></p>
+	      	<div class="demo">
+              <ul id="lightSlider">
+                <% unless @pictures.empty? %>
+                  <% @pictures.each do |pic| %> 
+			            <li data-thumb="<%=pic.file.url(:thumb) %>">
+			                <img src="<%=pic.file.url(:medium) %> " />
+			            </li>
+                   <% end %>
+                <% end %>
+                </ul>
+            </div>
+          </div> 
+
+            <div class="card-panel">
+            	 <h4 class="title" style="display: block">About the flatshare</h4>
+		            <ul style="display: block;">
+		              <li><%=@listing.room_type%></li>
+		              <li><%=@listing.bedrooms%> bedroom(s) total</li>
+		              <li><%=@listing.rooms_for_rent%> bedroom(s) available</li>            
+		              <li><%=@listing.minimumstay%> months minimum stay</li>
+		              <li>Available from <%=@listing.available_from%> </li>
+		             
+		            </ul>
+		             <h4 class="title" style="display: block">Ideal flatmates</h4>
+		                  
+		              <p><%=@listing.prefred_gender%>, from <%=@listing.prefred_age %>  old  <%=@listing.prefred_occupation%> </p>  
+		                <h4 class="title" style="display: block">Description</h4>
+		                  
+		              <p><%=@listing.description%> </p>   
+
+		            <h4 class="title" style="display: block">Amenities</h4>
+		            <ul style="display: block;">
+		            <%@listing.amenities.each do |amenity| %>
+		               <li><%=amenity.name%></li>
+		            <%end%>  
+		             
+		            </ul>  
+
+		            <h4 class="title" style="display: block">House Rules</h4>
+		            <ul style="display: block;">
+		            <%@listing.rules.each do |rule| %>
+		               <li><%=rule.name%></li>
+		            <%end%>  
+		             
+		            </ul>          
+	        </div>
+
+	      
+      </div> 
+
+      <div class="col s12 m4">
+          <div class="card-panel">
+	      </div> 
+	       <div class="card-panel">
+	      </div>   
+      </div>           
+	</div>
+      
+
+
+
+<!-- Main END --> 
+
+
+
+<style type="text/css">
+
+
+
+.demo {
+    width:100%;
+}
+.demo ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom:0;
+}
+.demo li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor:pointer;
+}
+.demo img {
+    display: block;   
+    width: 100%;
+    height: 100%;
+}
+
+.lSGallery li{
+	height: 50px !important;
+}
+.lSGallery li img{
+	width: 100%;
+    height: 100%;
+}
+</style>
+<script type="text/javascript">
+
+
+$('#lightSlider').lightSlider({
+    gallery: true,
+    item: 1,
+    loop: true,
+    slideMargin: 0,
+    thumbItem: 9
+});
+</script>

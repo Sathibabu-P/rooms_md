@@ -17,63 +17,31 @@
         </div>
     </div>
       <div class="row">
-         <div class="col s12 m9">
-        <div class="card-panel grey lighten-5" style="padding: 10px">
-          <div class="row" >
-            <div class="col m3" style="height: 150px;">
-              <img src="img/yuna.jpg" alt="" class=" responsive-img" style="max-width: 100%;max-height: 100%;"> <!-- notice the "circle" class -->
-            </div>
-            <div class="col m9">
-              <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-               <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-               <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-            </div>
-          </div>
-        </div>
-         <div class="card-panel grey lighten-5" style="padding: 10px">
-          <div class="row" >
-            <div class="col m3" style="height: 150px;">
-              <img src="img/yuna.jpg" alt="" class=" responsive-img" style="max-width: 100%;max-height: 100%;"> <!-- notice the "circle" class -->
-            </div>
-            <div class="col m9">
-              <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-               <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-               <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-            </div>
-          </div>
-        </div>
-         <div class="card-panel grey lighten-5" style="padding: 10px">
-          <div class="row" >
-            <div class="col m3" style="height: 150px;">
-              <img src="img/yuna.jpg" alt="" class=" responsive-img" style="max-width: 100%;max-height: 100%;"> <!-- notice the "circle" class -->
-            </div>
-            <div class="col m9">
-              <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-               <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-               <span class="black-text">
-                This is a square image. Add the "circle" class to it to make it appear circular.
-              </span>
-            </div>
-          </div>
-        </div>
+      <div class="col s12 m9">
+        <% @listings.each do |listing| %>
+        <% @pic = listing.pictures.first%>   
+          <div class="card-panel grey lighten-5" style="padding: 10px">
+            <div class="row" >
+              <div class="col m3" style="height: 150px;">              
+                <%=  image_tag @pic.file.url(:thumb),:class =>"responsive-img",:style => "max-width: 100%;max-height: 100%;"  if @pic.present?  %> <!-- notice the "circle" class -->
+              </div>
+              <div class="col m9">
+                <h4 class="media-heading">
+                  <%= link_to listing.title, show_listing_path(listing) %>
+                </h4>
+             
+               <li class="inline">Total Rooms: <%=listing.bedrooms%> room(s)</li>             
+               <li class="inline">Rooms for rent: <%=listing.rooms_for_rent%> room(s)</li>
+                <li class="inline">Rent per Month: <%=listing.rent%> Rs.</li>    
+               <li class="inline">Available  form: <%=listing.available_from%></li>
+               <li class="inline">Minimum Stay: <%=listing.minimumstay%> month(s)</li>
 
-    </div>   
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
       </div>
    
   </div>

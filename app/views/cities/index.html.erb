@@ -1,0 +1,49 @@
+<main>
+ <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb">First</a>
+        <a href="#!" class="breadcrumb">Second</a>
+        <a href="#!" class="breadcrumb">Third</a>
+      </div>
+    </div>
+  </nav>
+  
+
+ <div class="row"> 
+    <div class="col s12 m12">    
+        <div class="card-panel grey lighten-5 z-depth-1">
+        <div class="container">
+        <%= link_to 'New City', new_city_path, :class => 'btn-floating btn-large waves-effect waves-light right' %>
+        <table class="bordered highlight" id="">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @cities.each do |city| %>
+              <tr>
+                <td><%= city.name %></td>
+               
+                <td><%= link_to 'Edit', edit_city_path(city) %>
+                <%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>  
+
+<script type="text/javascript">
+
+      $( document ).ready(function() {     
+        $('#cities').DataTable();
+      });
+</script>
+    
