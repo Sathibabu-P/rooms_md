@@ -15,3 +15,7 @@
  //= require_tree ../../../vendor/assets/stylesheets/.
 
  */
+
+ .dynatable-per-page{
+ 	display: none!important;
+ }

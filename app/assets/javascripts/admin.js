@@ -14,9 +14,11 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
+//= require materialize-sprockets
+//= require initialize
+//= require jquery.dynatable
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require_tree ../../../vendor/assets/javascripts/.
 
 
 
