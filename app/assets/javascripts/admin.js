@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery_ujs
 //= require turbolinks
 //= require rails.validations
 //= require rails.validations.simple_form

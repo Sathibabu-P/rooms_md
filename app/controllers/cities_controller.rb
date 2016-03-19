@@ -7,6 +7,10 @@ class CitiesController < ApplicationController
   # GET /cities.json
   def index
     @cities = City.all
+      respond_to do |format|
+        format.html # don't forget if you pass html
+        format.xls { send_data(@cities.to_xls(:only => [:id, :name])) }       
+      end
   end
 
   # GET /cities/1
@@ -21,6 +25,12 @@ class CitiesController < ApplicationController
 
   # GET /cities/1/edit
   def edit
+  end
+
+
+  def import
+    City.import(params[:file])
+    redirect_to cities_path
   end
 
   # POST /cities

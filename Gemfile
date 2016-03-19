@@ -35,14 +35,18 @@ gem "paperclip"
 gem 'public_activity'
 gem 'friendly_id'
 gem 'ratyrate'
-gem 'jquery-datatables-rails', '~> 3.3.0'
+# gem 'jquery-datatables-rails', '~> 3.3.0'
+
+gem 'jquery-dynatable-rails'
+
 gem 'jquery-turbolinks'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'roo'
 gem "iconv", "~> 1.0.3"
-
+gem 'to_xls-rails'
+gem 'roo-xls'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

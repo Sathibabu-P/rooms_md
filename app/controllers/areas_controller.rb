@@ -7,6 +7,10 @@ class AreasController < ApplicationController
   # GET /areas.json
   def index
     @areas = Area.all
+    respond_to do |format|
+        format.html # don't forget if you pass html
+        format.xls { send_data(@areas.to_xls(:only => [:id, :name, :pincode ,:latitude, :longitude , :city_id])) }       
+      end
   end
 
   # GET /areas/1
@@ -23,6 +27,12 @@ class AreasController < ApplicationController
   def edit
   end
 
+
+  def import
+    Area.import(params[:file])
+    redirect_to areas_url
+  end
+
   # POST /areas
   # POST /areas.json
   def create
@@ -30,7 +40,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.save
-        format.html { redirect_to @area, notice: 'Area was successfully created.' }
+        format.html { redirect_to areas_url, notice: 'Area was successfully created.' }
         format.json { render :show, status: :created, location: @area }
       else
         format.html { render :new }
@@ -44,7 +54,7 @@ class AreasController < ApplicationController
   def update
     respond_to do |format|
       if @area.update(area_params)
-        format.html { redirect_to @area, notice: 'Area was successfully updated.' }
+        format.html { redirect_to areas_url, notice: 'Area was successfully updated.' }
         format.json { render :show, status: :ok, location: @area }
       else
         format.html { render :edit }
@@ -71,6 +81,6 @@ class AreasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def area_params
-      params.require(:area).permit(:name)
+      params.require(:area).permit(:name,:city_id, :pincode, :latitude, :longitude)
     end
 end

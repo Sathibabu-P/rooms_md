@@ -22,8 +22,9 @@
             </li>
           </ul>  
     </div>
-    <%= link_to 'New Listing', new_listing_path %>
+    <%= link_to 'Post Room', new_listing_path,:class => 'btn  waves-effect waves-light light-blue darken-4 right', :style => 'margin-right:10px;' %>
     <div class="col s12 m9">
+
         <% @listings.each do |listing| %>
         <% @pic = listing.pictures.first%>   
           <div class="card-panel grey lighten-5" style="padding: 10px">

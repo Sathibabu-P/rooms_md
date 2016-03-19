@@ -12,3 +12,11 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( admin.js )
 Rails.application.config.assets.precompile += %w( admin.css )
+Rails.application.config.assets.precompile += %w( cities.js )
+Rails.application.config.assets.precompile += %w( cities.css )
+Rails.application.config.assets.precompile += %w( dashboard.js )
+Rails.application.config.assets.precompile += %w( dashboard.css )
+Rails.application.config.assets.precompile += %w( areas.js )
+Rails.application.config.assets.precompile += %w( areas.css )
+Rails.application.config.assets.precompile += %w( admin_listings.js )
+Rails.application.config.assets.precompile += %w( admin_listings.css )
