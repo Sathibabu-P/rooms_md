@@ -1,7 +1,7 @@
 class City < ActiveRecord::Base
 
 
-	has_many :areas
+	has_many :areas , :dependent => :destroy
 	has_many :listings
 	validates :name, presence: true, uniqueness: true
 

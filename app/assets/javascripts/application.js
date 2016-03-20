@@ -16,6 +16,9 @@
 //= require turbolinks
 //= require rails.validations
 //= require rails.validations.simple_form
+//= require jquery.raty
+//= require ratyrate
 //= require materialize-sprockets
 //= require lightslider.js
+//= require initialize
 

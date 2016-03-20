@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
  
 
+  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :admins
   devise_for :users
 
@@ -23,7 +24,9 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
+  resources :home
 
+  
   put "like" => "listings#upvote", as:'like_listing'
   put "dislike" => "listings#downvote",as:'dislike_listing'
 
