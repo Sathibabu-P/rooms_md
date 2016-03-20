@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+    @listings = current_user.listings 
   end
 
   # GET /listings/1
@@ -28,7 +28,7 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = Listing.new(listing_params)
+     @listing = current_user.listings.build(listing_params)
 
     respond_to do |format|
       if @listing.save
@@ -87,6 +87,20 @@ class ListingsController < ApplicationController
     @pic.destroy
     redirect_to edit_listing_path(@listing)
   end
+
+
+  def upvote
+    @listing = Listing.find_by_id(params[:id])
+    @listing.upvote_from current_user
+    redirect_to show_listing_path(@listing)
+  end
+
+  def downvote
+    @listing = Listing.find_by_id(params[:id])
+    @listing.downvote_from current_user
+    redirect_to show_listing_path(@listing)
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

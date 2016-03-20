@@ -24,9 +24,14 @@ Rails.application.routes.draw do
   end
 
 
+  put "like" => "listings#upvote", as:'like_listing'
+  put "dislike" => "listings#downvote",as:'dislike_listing'
+
+
   get '/listing/:id' => "home#show" , as:'show_listing'
 
-
+  get '/update_areas' => "areas#area_list", :as => 'update_areas'
+ 
  
   get 'user_dashboard' => 'user_dashboard#index'
   get 'user_messages' => 'user_dashboard#messages'

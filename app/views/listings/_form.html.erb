@@ -7,6 +7,19 @@
           
           <div class="row">
             <%= simple_form_for(@listing, html: { class: "form-horizontal", role: "form" ,:multipart => true},:validate => true) do |f| %>
+
+              <div class="row">
+                <div class="input-field col s12 city">
+                  <%= f.association :city , prompt: "Select City", selected: @listing.city, label: false %>
+                </div>
+              </div>
+                <div class="row">
+                <div class="input-field col s12 areaslist">
+                  <%= f.association :area, prompt: "Select Area", selected: @listing.area, label: false  %>
+                </div>
+              </div>
+         
+         
               <div class="row">
                 <div class="input-field col s12">
                 	<%= f.input :title %>
@@ -171,4 +184,18 @@
      $(".button-collapse").sideNav();
       $('select').material_select();
   })
+
+
+    $(document).ready(function() {
+    $('.city select').change(function() {     
+      $.ajax({
+        url: "<%= update_areas_path %>",
+        data: {
+          city_id : $('#listing_city_id').val()
+        },
+        dataType: "script"
+      });
+    });
+  });
+
 </script>

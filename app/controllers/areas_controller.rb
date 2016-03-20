@@ -1,5 +1,5 @@
 class AreasController < ApplicationController
-  before_filter :authenticate_admin!
+  before_filter :authenticate_admin!, except: [:area_list]
   layout 'admin'
   before_action :set_area, only: [:show, :edit, :update, :destroy]
 
@@ -11,6 +11,16 @@ class AreasController < ApplicationController
         format.html # don't forget if you pass html
         format.xls { send_data(@areas.to_xls(:only => [:id, :name, :pincode ,:latitude, :longitude , :city_id])) }       
       end
+  end
+
+
+  def area_list
+    @city = City.where(:id => params[:city_id]).first    
+    if @city.present?
+        @areas = @city.areas.map{|s| [s.name, s.id]}.insert(0, "Select a Area") 
+    else
+        @areas = Area.all.map{|s| [s.name, s.id]}.insert(0, "Select a Area")
+    end
   end
 
   # GET /areas/1
