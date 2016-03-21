@@ -85,17 +85,19 @@
                               </tr>
                             </thead>
                             <tbody>
+                              <% @messages.each do |msg| %>
                               <tr class="unreaded">
                                 <td class="check-col"><input type="checkbox" id="checkbox1" class="filled-in">
                                   <label for="checkbox1"></label></td>
                                 <td><a href="#!" class="cell-row">
                                   <div class="cell"> <img src="imgs/sun-glasses_01.jpg" alt="" class="simple-avatar small circle left">
-                                    <h6>Abbie Nicolson</h6>
-                                    <p>Todays trends in webdesign</p>
+                                    <h6><%=msg.name %></h6>
+                                    <p><%=msg.listing.title%></p>
                                   </div>
-                                  <div class="cell w2 last"> <span class="new badge static"></span> <span class="datetime">17min ago</span> </div>
+                                  <div class="cell w2 last"> <span class="new badge static"></span> <span class="datetime"><%=time_ago_in_words(msg.created_at) %> ago</span> </div>
                                   </a></td>
                               </tr>
+                              <%end%>
                               <tr class="unreaded">
                                 <td class="check-col"><input type="checkbox" id="checkbox2" class="filled-in" checked="checked">
                                   <label for="checkbox2"></label></td>

@@ -1,5 +1,6 @@
 class UserDashboardController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user! 
+  include ActionView::Helpers::DateHelper
   def index
   	@profile = current_user.profile 
   	unless @profile.present?
@@ -9,6 +10,6 @@ class UserDashboardController < ApplicationController
   	end
   end
   def messages
-  	
+  	@messages = current_user.messages
   end
 end

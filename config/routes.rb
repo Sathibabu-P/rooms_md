@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
  
 
+  get '/users' => "users#index"
+
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :admins
   devise_for :users
