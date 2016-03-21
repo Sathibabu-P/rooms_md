@@ -94,8 +94,8 @@
 	       		<% pic = listing.pictures.first%>
 			    <li class="collection-item avatar">
 			      <%=  image_tag pic.file.url(:thumb),:class =>"circle" if pic.present?  %>
-			      <span class="title truncate"><%=listing.title%></span>
-			       <p><%= rating_for listing, "features" %></p>
+			      <span class="title truncate"><%= link_to listing.title, show_listing_path(listing) %></span>
+			       <p><%= rating_for listing, "features" , { readonly: true} %></p>
 			    </li>
 			  	<%end%>
 	      </div> 
@@ -169,6 +169,9 @@
 }
 .fs12 {
 	font-size:12px !important;
+}
+img.raty-cancel {
+  display: none;
 }
 </style>
 <script type="text/javascript">

@@ -1,10 +1,16 @@
 class AmenitiesController < ApplicationController
+  before_filter :authenticate_admin!
+  layout 'admin'
   before_action :set_amenity, only: [:show, :edit, :update, :destroy]
 
   # GET /amenities
   # GET /amenities.json
   def index
     @amenities = Amenity.all
+    respond_to do |format|
+        format.html # don't forget if you pass html
+        format.xls { send_data(@amenities.to_xls(:only => [:id, :name])) }       
+      end
   end
 
   # GET /amenities/1
@@ -21,6 +27,11 @@ class AmenitiesController < ApplicationController
   def edit
   end
 
+  def import
+    Amenity.import(params[:file])
+    redirect_to amenties_path
+  end
+
   # POST /amenities
   # POST /amenities.json
   def create
@@ -28,7 +39,7 @@ class AmenitiesController < ApplicationController
 
     respond_to do |format|
       if @amenity.save
-        format.html { redirect_to @amenity, notice: 'Amenity was successfully created.' }
+        format.html { redirect_to amenities_url, notice: 'Amenity was successfully created.' }
         format.json { render :show, status: :created, location: @amenity }
       else
         format.html { render :new }
@@ -42,7 +53,7 @@ class AmenitiesController < ApplicationController
   def update
     respond_to do |format|
       if @amenity.update(amenity_params)
-        format.html { redirect_to @amenity, notice: 'Amenity was successfully updated.' }
+        format.html { redirect_to amenities_url, notice: 'Amenity was successfully updated.' }
         format.json { render :show, status: :ok, location: @amenity }
       else
         format.html { render :edit }

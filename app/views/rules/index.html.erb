@@ -1,27 +1,84 @@
-<p id="notice"><%= notice %></p>
+<main>
+ <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb">First</a>
+        <a href="#!" class="breadcrumb">Second</a>
+        <a href="#!" class="breadcrumb">Third</a>
+      </div>
+    </div>
+  </nav>
+  
+      
+ <div class="row"> 
+   <div class="col s12 m12">   
+   <div class="card-panel grey lighten-5 z-depth-1">
+          <%= link_to 'New rule', new_rule_path, :class => 'btn-floating btn-small waves-effect waves-light ' %>
+          <a class="waves-effect waves-light btn-floating modal-trigger" href="#modal1">Import</a>
+          <%= link_to "Excel", rules_path(format: "xls") , :class => 'btn-floating btn-small waves-effect waves-light ' %>
+        </div>
+    </div>
+    <div class="col s12 m12">    
+        <div class="card-panel grey lighten-5 z-depth-1">
+        
+        <table class="bordered highlight" id="rules">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-<h1>Listing Rules</h1>
+          <tbody>
+            <% @rules.each do |rule| %>
+              <tr>
+                <td><%= rule.name %></td>
+               
+                <td><%= link_to 'Edit', edit_rule_path(rule) %>
+                <%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>
+      
+    </div>
+  </div>
+</main>  
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+ <div id="modal1" class="modal" style="z-index: 1003; display: none; oparule: 0; transform: scaleX(0.7); top: 248.791px;">
+  <div class="modal-content">
+    <h4 class="light">Import Rules</h4>
+       <%= form_tag import_rules_path, multipart: true do %>
 
-  <tbody>
-    <% @rules.each do |rule| %>
-      <tr>
-        <td><%= rule.name %></td>
-        <td><%= link_to 'Show', rule %></td>
-        <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
-        <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+       
 
-<br>
+             <div class="row">
+                <div class="file-field input-field col s12">
+                <div class="btn">
+                  <span>File</span>
+                   <%= file_field_tag :file%>
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="Upload Excel file only..">
+                </div>
+              </div>
+              </div>
 
-<%= link_to 'New Rule', new_rule_path %>
+          <div class="form-actions">
+            <%= submit_tag "Import",:class => 'btn  waves-effect waves-light'  %>
+          </div>
+        <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-secondary-color btn-flat ">CLOSE</a>    
+  </div>
+</div>
+
+<script type="text/javascript">
+
+      $( document ).ready(function() {     
+        $('#rules').dynatable();
+      });
+</script>
+    

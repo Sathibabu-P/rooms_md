@@ -1,27 +1,84 @@
-<p id="notice"><%= notice %></p>
+<main>
+ <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb">First</a>
+        <a href="#!" class="breadcrumb">Second</a>
+        <a href="#!" class="breadcrumb">Third</a>
+      </div>
+    </div>
+  </nav>
+  
+      
+ <div class="row"> 
+   <div class="col s12 m12">   
+   <div class="card-panel grey lighten-5 z-depth-1">
+          <%= link_to 'New amenity', new_amenity_path, :class => 'btn-floating btn-small waves-effect waves-light ' %>
+          <a class="waves-effect waves-light btn-floating modal-trigger" href="#modal1">Import</a>
+          <%= link_to "Excel", amenities_path(format: "xls") , :class => 'btn-floating btn-small waves-effect waves-light ' %>
+        </div>
+    </div>
+    <div class="col s12 m12">    
+        <div class="card-panel grey lighten-5 z-depth-1">
+        
+        <table class="bordered highlight" id="amenities">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-<h1>Listing Amenities</h1>
+          <tbody>
+            <% @amenities.each do |amenity| %>
+              <tr>
+                <td><%= amenity.name %></td>
+               
+                <td><%= link_to 'Edit', edit_amenity_path(amenity) %>
+                <%= link_to 'Destroy', amenity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>
+      
+    </div>
+  </div>
+</main>  
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+ <div id="modal1" class="modal" style="z-index: 1003; display: none; opaamenity: 0; transform: scaleX(0.7); top: 248.791px;">
+  <div class="modal-content">
+    <h4 class="light">Import Amenities</h4>
+       <%= form_tag import_amenities_path, multipart: true do %>
 
-  <tbody>
-    <% @amenities.each do |amenity| %>
-      <tr>
-        <td><%= amenity.name %></td>
-        <td><%= link_to 'Show', amenity %></td>
-        <td><%= link_to 'Edit', edit_amenity_path(amenity) %></td>
-        <td><%= link_to 'Destroy', amenity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+       
 
-<br>
+             <div class="row">
+                <div class="file-field input-field col s12">
+                <div class="btn">
+                  <span>File</span>
+                   <%= file_field_tag :file%>
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="Upload Excel file only..">
+                </div>
+              </div>
+              </div>
 
-<%= link_to 'New Amenity', new_amenity_path %>
+          <div class="form-actions">
+            <%= submit_tag "Import",:class => 'btn  waves-effect waves-light'  %>
+          </div>
+        <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-secondary-color btn-flat ">CLOSE</a>    
+  </div>
+</div>
+
+<script type="text/javascript">
+
+      $( document ).ready(function() {     
+        $('#amenities').dynatable();
+      });
+</script>
+    

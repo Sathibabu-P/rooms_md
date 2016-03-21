@@ -1,10 +1,16 @@
 class RulesController < ApplicationController
+  before_filter :authenticate_admin!
+  layout 'admin'  
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
 
   # GET /rules
   # GET /rules.json
   def index
     @rules = Rule.all
+     respond_to do |format|
+        format.html # don't forget if you pass html
+        format.xls { send_data(@rules.to_xls(:only => [:id, :name])) }       
+      end
   end
 
   # GET /rules/1
@@ -21,6 +27,11 @@ class RulesController < ApplicationController
   def edit
   end
 
+   def import
+    Rule.import(params[:file])
+    redirect_to amenties_path
+  end
+
   # POST /rules
   # POST /rules.json
   def create
@@ -28,7 +39,7 @@ class RulesController < ApplicationController
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
+        format.html { redirect_to rules_url, notice: 'Rule was successfully created.' }
         format.json { render :show, status: :created, location: @rule }
       else
         format.html { render :new }
@@ -42,7 +53,7 @@ class RulesController < ApplicationController
   def update
     respond_to do |format|
       if @rule.update(rule_params)
-        format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }
+        format.html { redirect_to rules_url, notice: 'Rule was successfully updated.' }
         format.json { render :show, status: :ok, location: @rule }
       else
         format.html { render :edit }

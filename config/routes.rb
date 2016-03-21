@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   
   get 'profiles/edit'
 
-  resources :rules
+  resources :rules do
+    collection { post :import }
+  end
   resources :profiles
-  resources :amenities
+  resources :amenities do
+    collection { post :import }
+  end
   resources :listings
 
   resources :cities do
