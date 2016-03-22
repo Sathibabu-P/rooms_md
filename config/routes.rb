@@ -52,6 +52,11 @@ Rails.application.routes.draw do
   delete '/dellistingpic' => "admin_listings#delpic"
 
    get 'user_dashboard'  => "user_dashboard#index", as: 'user_profile'
+
+
+   get '/change_listing_status' => "admin_listings#change_listing_status"
+
+   get '/messages' => "dashboard#messages"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

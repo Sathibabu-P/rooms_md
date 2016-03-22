@@ -25,6 +25,9 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Posted by</th>
+              <th>Posted at</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -32,7 +35,21 @@
           <tbody>
             <% @listings.each do |listing| %>
               <tr>
-                <td><%= listing.title %></td>
+                <td class="truncate"><%= listing.title %></td>
+                <td><%=listing.user ? listing.user.profile.first_name : 'Admin' %></td>
+                <td><%=listing.created_at.strftime("%B %d, %Y")%></td>
+                <td>
+
+                    <div class="switch">
+                      <label>
+                       
+                        <input type="checkbox"  <%= listing.verified_status ? 'checked' : 'unchecked' %> data-id = "<%= listing.id %>" class="status">
+                        <span class="lever"></span>
+                        
+                      </label>
+                    </div>
+
+                  </td>
                
                 <td><%= link_to 'Edit', edit_admin_listing_path(listing) %>
                 <%= link_to 'Destroy', admin_listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -80,5 +97,24 @@
       $( document ).ready(function() {     
         $('#listings').dynatable();
       });
+
+      $(document).ready(function() {
+          $('.status').change(function() {
+                           
+                  var id = $(this).data("id");
+                  $.ajax({
+                       type: "GET",// GET in place of POST
+                       contentType: "application/json; charset=utf-8",
+                       url: "/change_listing_status",
+                       data : {id:id, value: $(this).is(":checked") },
+                       dataType: "json"
+                  });
+                  
+          });
+      });
+
 </script>
+<style type="text/css">
+.switch label .lever { background-color: #E7230A;}
+</style>
     

@@ -99,6 +99,13 @@ class AdminListingsController < ApplicationController
     redirect_to edit_admin_listing_path(@listing)
   end
 
+
+  def change_listing_status
+    @listing = Listing.find(params[:id])
+    @listing.update_attributes(:verified_status => params[:value]) if @listing.present?
+    render :text => 'success'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
