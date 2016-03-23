@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
    ratyrate_rater
+   validates :password, :password_confirmation, presence: true
 end

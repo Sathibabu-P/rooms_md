@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320100507) do
+ActiveRecord::Schema.define(version: 20160323173631) do
 
   create_table "admin_areas", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -166,12 +166,15 @@ ActiveRecord::Schema.define(version: 20160320100507) do
     t.string   "address",              limit: 255
     t.string   "about",                limit: 255
     t.integer  "user_id",              limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "picture_file_name",    limit: 255
     t.string   "picture_content_type", limit: 255
     t.integer  "picture_file_size",    limit: 4
     t.datetime "picture_updated_at"
+    t.boolean  "profile_visible",      limit: 1,   default: false
+    t.boolean  "email_notification",   limit: 1,   default: false
+    t.boolean  "message_notification", limit: 1,   default: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

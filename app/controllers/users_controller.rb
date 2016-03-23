@@ -7,5 +7,6 @@ class UsersController < ApplicationController
         format.html # don't forget if you pass html
         format.xls { send_data(@users.to_xls(:only => [:id, :email])) }       
       end
-  end
+  end  
+
 end
