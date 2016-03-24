@@ -26,11 +26,7 @@ class UserDashboardController < ApplicationController
     
   end
 
-  def update_settings
-    @profile = current_user.profile 
-    @profile.update_attributes(params[:name] => params[:value])
-    render 'text' => 'success'
-  end
+  
 
   private
 

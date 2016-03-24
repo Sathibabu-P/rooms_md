@@ -23,19 +23,76 @@
           <div class="card-panel grey lighten-5" style="padding: 10px">
             <div class="row" >
               <div class="col m3" style="height: 150px;">              
-                <%=  image_tag @pic.file.url(:thumb),:class =>"responsive-img",:style => "max-width: 100%;max-height: 100%;"  if @pic.present?  %> <!-- notice the "circle" class -->
+                <%=  image_tag @pic.file.url(:thumb),:class =>"responsive-img",:style => "max-width: 100%;max-height: 100%;"   if @pic.present?  %> <!-- notice the "circle" class -->
+                <label>Posted on </label> <span><%=time_ago_in_words(listing.created_at)%></span><label> ago</label>
               </div>
+              
               <div class="col m9">
-                <h4 class="media-heading">
-                  <%= link_to listing.title, show_listing_path(listing) %>
-                </h4>
-             
-               <li class="inline">Total Rooms: <%=listing.bedrooms%> room(s)</li>             
-               <li class="inline">Rooms for rent: <%=listing.rooms_for_rent%> room(s)</li>
-                <li class="inline">Rent per Month: <%=listing.rent%> Rs.</li>    
-               <li class="inline">Available  form: <%=listing.available_from%></li>
-               <li class="inline">Minimum Stay: <%=listing.minimumstay%> month(s)</li>
 
+                <div class="row"> 
+                  <div class="col m6">
+
+                       <span class="media-heading">
+                        <%= link_to listing.title, show_listing_path(listing) %>
+                      </span>
+                      <label style="display:block">Address</label>
+                      <address> <%=listing.area.name if listing.area.present? %>,<%=listing.landmark%></address>
+                      <br>
+
+                      <div class="row">
+
+                         <div class="col m6">
+                           <label style="display:block">Security Deposit</label>
+                            <span class="media-heading inline"> <%=listing.security_deposit%> </span> <label> onwards</label>
+                        </div>
+                         <div class="col m6">
+                            <label style="display:block">Minimum Stay</label>
+                            <span class="media-heading inline"> <%=listing.minimumstay%> </span> <label> Months</label>
+                        </div>
+
+                      </div>
+
+
+                  </div>
+                  <div class="col m6">
+
+                    <div class="row">
+
+
+
+                        <div class="col m6">
+                          <label style="display:block">Rent</label>
+                          <span class="media-heading inline"> <%=listing.rent%> </span> <label> onwards</label>
+                        </div>
+                          <div class="col m6">
+                          <label style="display:block">Available From</label>
+                          <span class="media-heading inline"> <%=listing.available_from%> </span>
+                        </div>
+
+                        <div class="col m12">
+                          <br>
+                             <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="border-radius: 50px;">Contact Owner</a>
+                           <p>
+                              Likes (<%=listing.get_upvotes.size%>)
+                              UnLikes(<%=listing.get_downvotes.size%>)
+                           </p>
+                          <p><%= rating_for listing, "features" %></p>
+                        </div>
+                        
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+              
+                  
+
+               
+             
+              
 
               </div>
             </div>
@@ -47,3 +104,40 @@
   </div>
 </div>
 <!-- Main END --> 
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+    <h4 class="light">Contact</h4>
+       <%= simple_form_for(@message,:validate => true,:url => url_for(:action => 'create', :controller => 'home'),:method => :post) do |f| %>      
+            <%#= f.hidden_field :listing_id, :value => @listing.id %>            
+            <div class="row">
+                <div class="input-field col s12">
+                  <%= f.input :name %>
+                </div>
+              </div>
+                <div class="row">
+                <div class="input-field col s12">
+                  <%= f.input :phoneno %>
+                </div>
+              </div>
+                <div class="row">
+                <div class="input-field col s12">
+                  <%= f.input :message%>
+                </div>
+              </div>
+              <%= f.button :submit, :class => 'btn  waves-effect waves-light'%>
+            <a  class=" modal-action modal-close waves-effect waves-green btn">Close</a>            
+         <% end %>        
+  </div> 
+   
+  </div>
+
+<style type="text/css">
+.media-heading{
+  font-size: 18px !important;
+}
+.row{
+  margin-bottom: 0px !important;
+}
+</style>

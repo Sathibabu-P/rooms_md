@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
   	@listings = Listing.all
+    @message = Message.new
   end
 
   def show
