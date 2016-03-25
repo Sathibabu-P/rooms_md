@@ -4,6 +4,15 @@ class HomeController < ApplicationController
     @message = Message.new
   end
 
+  def index_json    
+    @listings = Listing.all
+    render :json => @listings.as_json(
+                      :include => {
+                        :area => {:only => [:name]},
+                        :city => {:only => [:name]},
+                        :user => {:only => [:id], :include => {:profile => {:only => [:first_name]}}}
+                      })
+  end
   def show
   	@listing = Listing.find(params[:id])
   	@pictures = @listing.pictures
