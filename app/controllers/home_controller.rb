@@ -1,17 +1,35 @@
 class HomeController < ApplicationController
+  include ActionView::Helpers::DateHelper
   def index
   	@listings = Listing.all
     @message = Message.new
   end
 
-  def index_json    
+  def listings_json    
     @listings = Listing.all
+    @listings.each do |listing|
+      image = Picture.where(:listing_id => listing.id).first
+      listing[:image_url] = image.file.url(:thumb) if image.present?
+      listing[:up_votes] = listing.get_upvotes.size
+      listing[:down_votes] = listing.get_downvotes.size
+      listing[:time_ago] = time_ago_in_words(listing.created_at)
+    end
     render :json => @listings.as_json(
                       :include => {
                         :area => {:only => [:name]},
                         :city => {:only => [:name]},
                         :user => {:only => [:id], :include => {:profile => {:only => [:first_name]}}}
                       })
+  end
+
+  def areas_json
+     @areas = Area.all
+     render :json => @areas.as_json
+  end
+
+  def cities_json
+    @cities = City.all
+     render :json => @cities.as_json
   end
   def show
   	@listing = Listing.find(params[:id])

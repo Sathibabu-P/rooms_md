@@ -11,25 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323173631) do
-
-  create_table "admin_areas", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "admin_cities", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "admin_listings", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20160326044022) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",              limit: 255, default: "", null: false
@@ -110,8 +92,14 @@ ActiveRecord::Schema.define(version: 20160323173631) do
     t.integer  "admin_id",               limit: 4
     t.integer  "city_id",                limit: 4
     t.integer  "area_id",                limit: 4
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "image_url",              limit: 255, default: "null"
+    t.integer  "up_votes",               limit: 4
+    t.integer  "down_votes",             limit: 4
+    t.integer  "avgrating",              limit: 4
+    t.integer  "views",                  limit: 4
+    t.string   "time_ago",               limit: 255, default: "null"
   end
 
   add_index "listings", ["admin_id"], name: "index_listings_on_admin_id", using: :btree
@@ -210,6 +198,16 @@ ActiveRecord::Schema.define(version: 20160323173631) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "user_providers", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "user_providers", ["user_id"], name: "index_user_providers_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -221,6 +219,10 @@ ActiveRecord::Schema.define(version: 20160323173631) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end

@@ -31,6 +31,7 @@ gem "devise"
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem "omniauth-twitter"
+gem 'fb_graph'
 gem "paperclip"
 gem 'public_activity'
 gem 'friendly_id'

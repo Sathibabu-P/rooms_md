@@ -2,14 +2,26 @@
          
          mainApp.controller('ListingController', function($scope,$http) {
             $scope.listings = []
+            $scope.areas = []
+            $scope.cities = []
 
-            $http.get("/rooms.json").success(function (data) {
-               
+            $http.get("/listings_json.json").success(function (data) {               
                 angular.forEach(data,function (key) {
-                    $scope.listings.push(key);
-                    console.log(key)
+                    $scope.listings.push(key);                   
+                });
+            });  
+            $http.get("/areas_json.json").success(function (data) {               
+                angular.forEach(data,function (key) {
+                    $scope.areas.push(key);                   
+                });
+            });  
+            $http.get("/cities_json.json").success(function (data) {               
+                angular.forEach(data,function (key) {
+                    $scope.cities.push(key);                   
                 });
             });    
+
+             $scope.filter = {};
          });
 
 

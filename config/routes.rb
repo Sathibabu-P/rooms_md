@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :admins
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
 
   
   get 'profiles/edit'
@@ -61,7 +61,9 @@ Rails.application.routes.draw do
    patch '/update_password' => "user_dashboard#update_password", as: 'update_password'
     get '/update_settings' => "profiles#update_settings"
 
-   get '/rooms' => "home#index_json" 
+   get '/listings_json' => "home#listings_json" 
+   get '/areas_json' => "home#areas_json" 
+   get '/cities_json' => "home#cities_json" 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
