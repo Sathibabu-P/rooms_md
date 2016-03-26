@@ -22,6 +22,7 @@
             });    
 
              $scope.filter = {};
+             $scope.searchText = '';
          });
 
 

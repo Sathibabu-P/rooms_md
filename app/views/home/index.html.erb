@@ -9,33 +9,156 @@
     </div>
   </div>
   <div class="row"> 
-    <div class="col s12 m3" style="height: 500px;">
-     <div class="card-panel grey lighten-5" style="padding: 10px">
-          <div class="row" >
-            <div class="input-field">
-    
-    <select class="browser-default" ng-model="filter.ListingArea" material-select>
-    <option ng-repeat="area in listings">{{area.title}}</option>
-    </select>
+   <!--  -->
+   <div class="col m3 s12">
+                  
+                    <div class="filter-elements">                         
+                       <div class="filter-container">                            
+                            <input type="hidden" value="1" name="filter">
+                            <input type="hidden" value="" name="term">
+                            <input type="hidden" value="" name="used">
 
-       
-       
-    
-      </div>
-          </div>
-      </div>
-    </div>
-      <div class="row" >
+                            <ul class="collapsible" data-collapsible="expandable">
+
+                            <li>
+                                    <div class="collapsible-header active">Geeignet für</div>
+                                    <div class="collapsible-body" style="padding: 15px;">
+                                        <ul>
+                                            <li>
+                                                <p class="range-field">
+                                                <input type="range" id="test5" min="0" max="100" />
+                                              </p>
+                                            </li>
+                                           
+                                        </ul>
+                                    </div>
+                                </li>
+
+                             
+                                <li>
+                                    <div class="collapsible-header active">Geeignet für</div>
+                                    <div class="collapsible-body" style="padding: 15px;">
+                                        <ul>
+                                            <li>
+                                                <input onclick="this.form.submit()" type="checkbox" name="allergic" id="allergic" value="1">
+                                                <label for="allergic">Allergiker (63)</label>
+                                            </li>
+                                            <li>
+                                                <input onclick="this.form.submit()" type="checkbox" name="pet" id="pet" value="1">
+                                                <label for="pet">Tierbesitzer (74)</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header active"><i class="fa fa-barcode"></i>Hersteller</div>
+                                    <div class="collapsible-body" style="padding: 15px;">
+                                        <ul>
+                                            
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Dirt Devil" value="4">
+                                                    <label for="Dirt Devil">Dirt Devil (3)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Ecovacs" value="2">
+                                                    <label for="Ecovacs">Ecovacs (10)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Hoover" value="11">
+                                                    <label for="Hoover">Hoover (7)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Infinuvo" value="14">
+                                                    <label for="Infinuvo">Infinuvo (2)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="iRobot" value="1">
+                                                    <label for="iRobot">iRobot (29)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Klarstein" value="8">
+                                                    <label for="Klarstein">Klarstein (5)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Kärcher" value="5">
+                                                    <label for="Kärcher">Kärcher (2)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="LG" value="15">
+                                                    <label for="LG">LG (4)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Moneual" value="9">
+                                                    <label for="Moneual">Moneual (4)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Neato Robotics" value="7">
+                                                    <label for="Neato Robotics">Neato Robotics (8)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Philips" value="10">
+                                                    <label for="Philips">Philips (2)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Samsung" value="16">
+                                                    <label for="Samsung">Samsung (12)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Sichler" value="3">
+                                                    <label for="Sichler">Sichler (7)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Vileda" value="12">
+                                                    <label for="Vileda">Vileda (3)</label>
+                                                </li>
+                                                
+                                                <li>
+                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Vorwerk" value="6">
+                                                    <label for="Vorwerk">Vorwerk (2)</label>
+                                                </li>
+                                                                                        </ul>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                           
+                        </div>
+                    </div>
+                </div>
+   <!--  -->
+      
       <div class="col s12 m9">
+
+      <div class="search">
+         <div class="input-field round-in-box">
+            <input id="search" type="search" required="" style="border: 1px solid #ccc" placeholder="Search" ng-model="searchText">     
+            <label for="search" style="margin-top: 52px;"><i class="material-icons">search</i></label>  
+           </div>
+      </div>
+          
        
-          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings| filter:filter">
+          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText">
             <% listing = Listing.find_by_id(3) %>
           
             <div class="row" >
-              <div class="col m3" style="height: 150px;"> 
+              <div class="col m3 " style="height: 150px;"> 
                 <img ng-src="{{listing.image_url}}" style="max-width: 100%;max-height: 100%;" class ="responsive-img" />             
                 <%#=  image_tag @pic.file.url(:thumb),:class =>"responsive-img",:style => "m"   if @pic.present?  %> <!-- notice the "circle" class -->
-                <label>Posted on </label> <span>{{ listing.time_ago }}<label>ago</label><%#=time_ago_in_words(listing.created_at)%></span>
+                <label>Posted on {{ listing.time_ago }} ago</label><%#=time_ago_in_words(listing.created_at)%></span>
               </div>
               
               <div class="col m9">
@@ -48,7 +171,7 @@
                         <%#= link_to listing.title, show_listing_path(listing) %>
                       </span>
                       <label style="display:block">Address</label>
-                      <address> {{listing.area.name}},{{listing.landmark}}<%#=listing.area.name if listing.area.present? %><%#=listing.landmark%></address>
+                      <address style="font-size: 12px;"> {{listing.area.name}},{{listing.landmark}}<%#=listing.area.name if listing.area.present? %><%#=listing.landmark%></address>
                       <br>
 
                       <div class="row">
@@ -111,7 +234,7 @@
           </div>
        
       </div>
-      </div>
+      
    
   </div>
 </div>
@@ -153,3 +276,23 @@
   margin-bottom: 0px !important;
 }
 </style>
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+   var slider = document.getElementById('test5');
+  noUiSlider.create(slider, {
+   start: [20, 80],
+   connect: true,
+   step: 1,
+   range: {
+     'min': 0,
+     'max': 100
+   },
+   format: wNumb({
+     decimals: 0
+   })
+  });
+  });
+        
+</script>
