@@ -22,6 +22,7 @@
 //= require lightslider.js
 //= require initialize
 //= require angular
+//= require angular-materialize.js
 //= require ngtimeago
 //= require home
 

@@ -1,7 +1,8 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, except: [:index, :show]
-  after_action :send_email_notification, only: [:create]
+  # after_action :send_email_notification, only: [:create]
+  before_action :set_data
   # GET /listings
   # GET /listings.json
   def index
@@ -13,11 +14,14 @@ class ListingsController < ApplicationController
   def show
   end
 
-  # GET /listings/new
-  def new
-    @listing = Listing.new
+  def set_data
     @amenities = Amenity.all
     @rules = Rule.all
+  end
+
+  # GET /listings/new
+  def new
+    @listing = Listing.new   
     @pictures = @listing.pictures
   end
 
@@ -40,7 +44,7 @@ class ListingsController < ApplicationController
             @listing.pictures.create(file: image)
           }
         end
-
+        ListingMailer.email_notification(current_user,@listing).deliver
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
         format.json { render :show, status: :created, location: @listing }
       else

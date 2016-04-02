@@ -11,4 +11,11 @@ class User < ActiveRecord::Base
    ratyrate_rater
    # validates :password, :password_confirmation, presence: true    
 
+  def self.search(search)
+    if search
+      self.where("email like ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
 end

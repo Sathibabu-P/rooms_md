@@ -206,10 +206,10 @@
 
                         <div class="col m12">
                           <br>
-                             <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="border-radius: 50px;">Contact Owner</a>
+                             <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="border-radius: 50px;" modal>Contact Owner</a>
                            <p>
-                              Likes ({{listing.up_votes}}<%#=listing.get_upvotes.size%>)
-                              UnLikes({{listing.down_votes}}<%#=listing.get_downvotes.size%>)
+                              <i class="material-icons">thumb_up</i> ({{listing.up_votes}}<%#=listing.get_upvotes.size%>)
+                              <i class="material-icons">thumb_down</i> ({{listing.down_votes}}<%#=listing.get_downvotes.size%>)
                            </p>
                           <p><%#= rating_for listing, "features" %></p>
                         </div>

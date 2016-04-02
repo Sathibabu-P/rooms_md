@@ -8,6 +8,11 @@
           <div class="row">
             <%= simple_form_for(@listing, html: { class: "form-horizontal", role: "form" ,:multipart => true},:validate => true) do |f| %>
 
+                
+              <script>
+                  Materialize.toast('<%= f.error_notification %>', 4000)
+               </script>
+
               <div class="row">
                 <div class="input-field col s12 city">
                   <%= f.association :city , prompt: "Select City", selected: @listing.city, label: false %>
@@ -138,7 +143,7 @@
               </div>
 
                <div class="row">
-               <% unless @pictures.empty? %>
+               <% if @pictures.present? %>
                   <% @pictures.each do |pic| %>   
 
                   

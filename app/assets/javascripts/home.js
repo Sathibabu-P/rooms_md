@@ -1,4 +1,4 @@
- var mainApp = angular.module("frm", ['ngtimeago']);
+ var mainApp = angular.module("frm", ['ngtimeago','ui.materialize']);
          
          mainApp.controller('ListingController', function($scope,$http) {
             $scope.listings = []
