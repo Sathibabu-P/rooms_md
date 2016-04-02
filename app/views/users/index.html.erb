@@ -22,10 +22,8 @@
         <div class="card-panel grey lighten-5 z-depth-1">       
         <div class="row">
             <%= form_tag users_path, :method => 'get', :autocomplete => "off" do %>
-              <div class="col m4">
-                <%= text_field_tag :search, params[:search] , :id=>"search",:placeholder=>"Search" %>
-              </div>
-               <div class="col m2">
+              <div class="col m4 right">
+                <%= text_field_tag :search, params[:search] , :id=>"search",:placeholder=>"Search" ,:style => 'width: 85%;'%>             
                 <button class="btn-floating btn-small waves-effect waves-light" type="submit">
                     <i class="material-icons">search</i>
                   </button>
@@ -63,6 +61,9 @@
   .collapsible-body p {
     margin: 0;
     padding: 5px 26px !important;
+}
+.pagination{
+  float: right;
 }
 </style>
 <script type="text/javascript">
