@@ -41,6 +41,11 @@
   </nav>
 </div>
 
+ <% flash.each do |key, value| %>
+ <script>
+    Materialize.toast('<%=value%>', 4000)
+ </script>
+<% end %>
 
 <%= yield %>
 

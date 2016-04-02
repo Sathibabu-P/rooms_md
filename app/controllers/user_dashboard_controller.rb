@@ -7,7 +7,7 @@ class UserDashboardController < ApplicationController
   	unless @profile.present?
   		@profile = Profile.new
   		@profile.user = current_user
-  		@profile.save
+  		@profile.save!
   	end
     @user = current_user
   end

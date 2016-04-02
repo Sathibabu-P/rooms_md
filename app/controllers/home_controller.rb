@@ -1,12 +1,12 @@
 class HomeController < ApplicationController
   include ActionView::Helpers::DateHelper
   def index
-  	@listings = Listing.all
+  	@listings = Listing.where(:verified_status => true)
     @message = Message.new
   end
 
   def listings_json    
-    @listings = Listing.all
+    @listings = Listing.where(:verified_status => true)
     @listings.each do |listing|
       image = Picture.where(:listing_id => listing.id).first
       listing[:image_url] = image.file.url(:thumb) if image.present?

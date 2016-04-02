@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, except: [:index, :show]
+  after_action :send_email_notification, only: [:create]
   # GET /listings
   # GET /listings.json
   def index
@@ -99,6 +100,10 @@ class ListingsController < ApplicationController
     @listing = Listing.find_by_id(params[:id])
     @listing.downvote_from current_user
     redirect_to show_listing_path(@listing)
+  end
+
+  def send_email_notification
+    ListingMailer.email_notification(current_user,@listing).deliver
   end
 
 
