@@ -69,7 +69,7 @@
                 </div>
    <!--  -->
       
-      <div class="col s12 m9 listings" when-scrolled="loadMore()" >
+      <div class="col s12 m9 listings " when-scrolled="loadMore()" >
 
           <div class="search">
              <div class="input-field round-in-box">
@@ -78,10 +78,27 @@
                </div>
           </div>
               
+
+          <div class="row">
+           <span style="display: block">Set Filters</span>
+          <div class="col m3">
+             <select class="" ng-model="rentOrder" material-select watch>
+              <option value="0" >Rent: Low to High</option>
+              <option value="1">Rent: High to Low</option>
+            </select>
+          </div>
+            <div class="col m3">
+             <select class="" ng-model="postedOrder" material-select >
+              <option >Posted: Recently</option>
+              <option>Posted: Week ago</option>
+              <option>Posted: Month ago</option>
+            </select>
+          </div>
+           
+          </div>    
        
-          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText | filter:ListingCity | filter:filterRange | limitTo:limit ">
-            <% listing = Listing.find_by_id(3) %>
-          
+          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText | filter:ListingCity | filter:filterRange | limitTo:limit | orderBy : rentorder ">
+           
             <div class="row" >
               <div class="col m3 " style="height: 150px;"> 
                 <img ng-src="{{listing.image_url}}" style="max-width: 100%;max-height: 100%;" class ="responsive-img" />             
@@ -206,7 +223,7 @@
   margin-bottom: 0px !important;
 }
 .listings{
-   height: 450px;
+   height: 650px;
     overflow: auto;
 }
 </style>

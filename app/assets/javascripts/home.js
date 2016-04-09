@@ -42,17 +42,22 @@
 
 
                 });
+              $scope.rentorder = '-rent';
+              $scope.$watch('rentOrder', function (val) {                   
+                      $scope.rentorder = (val == 1) ? '-rent' : 'rent';                     
+                });
+
+
+              $scope.rentOrder
 
 
 
                 
              
                 // set the default amount of items being displayed
-                $scope.limit = 1;
+                $scope.limit = 100;
                 $scope.loadMore = function() {  
-                       
-                          $scope.limit += 1    
-                                
+                          $scope.limit += 5
                 };
                 
                 $scope.loadMore();
