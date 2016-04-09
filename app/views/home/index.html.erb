@@ -21,7 +21,7 @@
                             <ul class="collapsible" data-collapsible="expandable">
 
                             <li>
-                                     <div class="collapsible-header active">Select City </div>
+                                     <div class="collapsible-header active"><i class="fa fa-barcode"></i>Select City </div>
                                     <div class="collapsible-body" style="padding: 15px;">
                                         <select class="" ng-model="ListingCity" material-select watch>
                                             <option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
@@ -32,7 +32,7 @@
 
                              
                                 <li>
-                                    <div class="collapsible-header active">Select Room Rent</div>
+                                    <div class="collapsible-header active"><i class="fa fa-barcode"></i>Select Room Rent</div>
                                     <div class="collapsible-body" style="padding: 15px;">
                                         <ul>
                                             <li ng-init="test.from = 1000; test.to = 10000">
@@ -51,12 +51,10 @@
                                     <div class="collapsible-header active"><i class="fa fa-barcode"></i>Room Features(Amenities)</div>
                                     <div class="collapsible-body" style="padding: 15px;">
                                         <ul>
-                                            
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Dirt Devil" value="4">
-                                                    <label for="Dirt Devil">Wifi</label>
+                                                <li ng-repeat="amenity in amenities">
+                                                    <input  type="checkbox" ng-click="includeAmenity(amenity.name)" name="amenities[]" id="{{amenity.id}}">
+                                                    <label for="{{amenity.id}}">{{amenity.name}}</label>
                                                 </li>
-                                             
                                         </ul>
                                     </div>
                                 </li>
@@ -88,7 +86,7 @@
             </select>
           </div>
             <div class="col m3">
-             <select class="" ng-model="postedOrder" material-select >
+             <select class="" ng-model="postedOrder" material-select watch>
               <option >Posted: Recently</option>
               <option>Posted: Week ago</option>
               <option>Posted: Month ago</option>
@@ -97,7 +95,7 @@
            
           </div>    
        
-          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText | filter:ListingCity | filter:filterRange | limitTo:limit | orderBy : rentorder ">
+          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText | filter:ListingCity | filter:filterRange | limitTo:limit | orderBy : rentorder | filter:amenityFilter" >
            
             <div class="row" >
               <div class="col m3 " style="height: 150px;"> 

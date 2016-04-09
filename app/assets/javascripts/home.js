@@ -4,6 +4,7 @@
             $scope.listings = []
             $scope.areas = []
             $scope.cities = []
+            $scope.amenities = []
 
             $http.get("/listings_json.json").success(function (data) { 
                $scope.listings_length = data.length;                 
@@ -20,7 +21,12 @@
                 angular.forEach(data,function (key) {
                     $scope.cities.push(key);                   
                 });
-            });    
+            }); 
+              $http.get("/amenities_json.json").success(function (data) {               
+                angular.forEach(data,function (key) {
+                    $scope.amenities.push(key);                   
+                });
+            });       
 
              $scope.filter = {};
              $scope.searchText = '';
@@ -48,8 +54,28 @@
                 });
 
 
-              $scope.rentOrder
+              $scope.amenityIncludes = [];
+    
+              $scope.includeAmenity = function(amenity) {
+                  var i = $.inArray(amenity, $scope.amenityIncludes);
+                  if (i > -1) {
+                      $scope.amenityIncludes.splice(i, 1);
+                  } else {
+                      $scope.amenityIncludes.push(amenity);
+                  }
+                  // console.log($scope.amenityIncludes)
+              }
+              
+              $scope.amenityFilter = function(listing) {
 
+                  if ($scope.amenityIncludes.length > 0) {
+                      angular.forEach(listing.amenities, function(amenity){                        
+                        if ($.inArray(amenity.name, $scope.amenityIncludes) < 0)
+                          return;
+                      });                      
+                  }         
+                  return listing;
+              }
 
 
                 

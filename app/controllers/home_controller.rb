@@ -18,6 +18,7 @@ class HomeController < ApplicationController
                       :include => {
                         :area => {:only => [:name]},
                         :city => {:only => [:name]},
+                        :amenities => {:only => [:name]},
                         :user => {:only => [:id], :include => {:profile => {:only => [:first_name]}}}
                       })
   end
@@ -30,6 +31,11 @@ class HomeController < ApplicationController
   def cities_json
     @cities = City.all
      render :json => @cities.as_json
+  end
+
+  def amenities_json
+    @amenities = Amenity.all
+     render :json => @amenities.as_json
   end
   def show
   	@listing = Listing.find(params[:id])
