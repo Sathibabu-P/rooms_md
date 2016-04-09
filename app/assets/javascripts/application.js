@@ -21,8 +21,10 @@
 //= require materialize-sprockets
 //= require lightslider.js
 //= require initialize
-//= require angular
+//= require angular.js
+//= require jquery.nouislider.js
 //= require angular-materialize.js
+//= require anguler_nouislider.js
 //= require ngtimeago
 //= require home
 

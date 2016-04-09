@@ -21,115 +21,43 @@
                             <ul class="collapsible" data-collapsible="expandable">
 
                             <li>
-                                    <div class="collapsible-header active">Geeignet für</div>
+                                     <div class="collapsible-header active">Select City </div>
                                     <div class="collapsible-body" style="padding: 15px;">
-                                        <ul>
-                                            <li>
-                                                <p class="range-field">
-                                                <input type="range" id="test5" min="0" max="100" />
-                                              </p>
-                                            </li>
-                                           
-                                        </ul>
+                                        <select class="" ng-model="ListingCity" material-select watch>
+                                            <option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
+                                        </select>
+                                                
                                     </div>
                                 </li>
 
                              
                                 <li>
-                                    <div class="collapsible-header active">Geeignet für</div>
+                                    <div class="collapsible-header active">Select Room Rent</div>
                                     <div class="collapsible-body" style="padding: 15px;">
                                         <ul>
-                                            <li>
-                                                <input onclick="this.form.submit()" type="checkbox" name="allergic" id="allergic" value="1">
-                                                <label for="allergic">Allergiker (63)</label>
-                                            </li>
-                                            <li>
-                                                <input onclick="this.form.submit()" type="checkbox" name="pet" id="pet" value="1">
-                                                <label for="pet">Tierbesitzer (74)</label>
-                                            </li>
+                                            <li ng-init="test.from = 1000; test.to = 10000">
+                                              <div sliderrange ng-from="test.from" ng-to="test.to" start=1000 end=10000 step=100></div>
+                                               <table>
+                                                <tr>
+                                                  <td>From: <input type="number" ng-model="test.from" min="1000" step="100"></td>
+                                                   <td>To:<input type="number" ng-model="test.to" min="1000" step="100"></td>
+                                                </tr>
+                                               </table>
+                                             
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="collapsible-header active"><i class="fa fa-barcode"></i>Hersteller</div>
+                                    <div class="collapsible-header active"><i class="fa fa-barcode"></i>Room Features(Amenities)</div>
                                     <div class="collapsible-body" style="padding: 15px;">
                                         <ul>
                                             
                                                 <li>
                                                     <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Dirt Devil" value="4">
-                                                    <label for="Dirt Devil">Dirt Devil (3)</label>
+                                                    <label for="Dirt Devil">Wifi</label>
                                                 </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Ecovacs" value="2">
-                                                    <label for="Ecovacs">Ecovacs (10)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Hoover" value="11">
-                                                    <label for="Hoover">Hoover (7)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Infinuvo" value="14">
-                                                    <label for="Infinuvo">Infinuvo (2)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="iRobot" value="1">
-                                                    <label for="iRobot">iRobot (29)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Klarstein" value="8">
-                                                    <label for="Klarstein">Klarstein (5)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Kärcher" value="5">
-                                                    <label for="Kärcher">Kärcher (2)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="LG" value="15">
-                                                    <label for="LG">LG (4)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Moneual" value="9">
-                                                    <label for="Moneual">Moneual (4)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Neato Robotics" value="7">
-                                                    <label for="Neato Robotics">Neato Robotics (8)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Philips" value="10">
-                                                    <label for="Philips">Philips (2)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Samsung" value="16">
-                                                    <label for="Samsung">Samsung (12)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Sichler" value="3">
-                                                    <label for="Sichler">Sichler (7)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Vileda" value="12">
-                                                    <label for="Vileda">Vileda (3)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input onclick="this.form.submit()" type="checkbox" name="manufacturer[]" id="Vorwerk" value="6">
-                                                    <label for="Vorwerk">Vorwerk (2)</label>
-                                                </li>
-                                                                                        </ul>
+                                             
+                                        </ul>
                                     </div>
                                 </li>
 
@@ -141,17 +69,17 @@
                 </div>
    <!--  -->
       
-      <div class="col s12 m9">
+      <div class="col s12 m9 listings" when-scrolled="loadMore()" >
 
-      <div class="search">
-         <div class="input-field round-in-box">
-            <input id="search" type="search" required="" style="border: 1px solid #ccc" placeholder="Search" ng-model="searchText">     
-            <label for="search" style="margin-top: 52px;"><i class="material-icons">search</i></label>  
-           </div>
-      </div>
-          
+          <div class="search">
+             <div class="input-field round-in-box">
+                <input id="search" type="search" required="" style="border: 1px solid #ccc" placeholder="Search" ng-model="searchText">     
+                <label for="search" style="margin-top: 52px;"><i class="material-icons">search</i></label>  
+               </div>
+          </div>
+              
        
-          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText">
+          <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText | filter:ListingCity | filter:filterRange | limitTo:limit ">
             <% listing = Listing.find_by_id(3) %>
           
             <div class="row" >
@@ -171,7 +99,9 @@
                         <%#= link_to listing.title, show_listing_path(listing) %>
                       </span>
                       <label style="display:block">Address</label>
+
                       <address style="font-size: 12px;"> {{listing.area.name}},{{listing.landmark}}<%#=listing.area.name if listing.area.present? %><%#=listing.landmark%></address>
+                      <span style="display:none">{{listing.city.name}}</span>
                       <br>
 
                       <div class="row">
@@ -275,24 +205,9 @@
 .row{
   margin-bottom: 0px !important;
 }
+.listings{
+   height: 450px;
+    overflow: auto;
+}
 </style>
 
-<script type="text/javascript">
-  
-  $(document).ready(function(){
-   var slider = document.getElementById('test5');
-  noUiSlider.create(slider, {
-   start: [20, 80],
-   connect: true,
-   step: 1,
-   range: {
-     'min': 0,
-     'max': 100
-   },
-   format: wNumb({
-     decimals: 0
-   })
-  });
-  });
-        
-</script>

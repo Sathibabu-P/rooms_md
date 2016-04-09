@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_one :profile, :dependent => :destroy
   has_many :listings , :dependent => :destroy
   has_many :messages
-  devise :database_authenticatable, :registerable,:omniauthable,:confirmable,
+  devise :database_authenticatable, :registerable,:omniauthable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauth_providers => [:facebook,  :google_oauth2]
    ratyrate_rater

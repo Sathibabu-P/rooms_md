@@ -1,11 +1,12 @@
- var mainApp = angular.module("frm", ['ngtimeago','ui.materialize']);
+ var mainApp = angular.module("frm", ['nouislider','ngtimeago','ui.materialize']);
          
          mainApp.controller('ListingController', function($scope,$http) {
             $scope.listings = []
             $scope.areas = []
             $scope.cities = []
 
-            $http.get("/listings_json.json").success(function (data) {               
+            $http.get("/listings_json.json").success(function (data) { 
+               $scope.listings_length = data.length;                 
                 angular.forEach(data,function (key) {
                     $scope.listings.push(key);                   
                 });
@@ -23,6 +24,50 @@
 
              $scope.filter = {};
              $scope.searchText = '';
+             $scope.ListingCity = '';
+
+
+
+
+              $scope.$watchGroup(['test.from', 'test.to'], function (newVals, oldVals) {
+                   
+                      $scope.range = {
+                        minRent: newVals[0],
+                        maxRent: newVals[1]
+                    };
+
+                     $scope.filterRange = function(obj) {
+                        return obj.rent >= $scope.range.minRent && obj.rent <= $scope.range.maxRent;
+                     };
+
+
+                });
+
+
+
+                
+             
+                // set the default amount of items being displayed
+                $scope.limit = 1;
+                $scope.loadMore = function() {  
+                       
+                          $scope.limit += 1    
+                                
+                };
+                
+                $scope.loadMore();
+
+
          });
 
 
+mainApp.directive('whenScrolled', function($window) {
+    return function(scope, elm, attr) {
+        var raw = elm[0];        
+        elm.bind('scroll', function() {
+            if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+                scope.$apply(attr.whenScrolled);
+            }
+        });
+    };
+});
