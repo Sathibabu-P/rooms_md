@@ -29,6 +29,10 @@ class UserDashboardController < ApplicationController
     end
   end
 
+  def favorites
+    @listings = current_user.votes.up.for_type(Listing).votables
+  end
+
   
 
   private

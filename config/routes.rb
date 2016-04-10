@@ -44,6 +44,7 @@ Rails.application.routes.draw do
  
   get 'user_dashboard' => 'user_dashboard#index'
   get 'user_messages' => 'user_dashboard#messages'
+  get 'favorites' => 'user_dashboard#favorites'
 
   get '/admin' => 'dashboard#index'
 

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauth_providers => [:facebook,  :google_oauth2]
    ratyrate_rater
+   acts_as_voter
    # validates :password, :password_confirmation, presence: true    
 
   def self.search(search)

@@ -97,13 +97,16 @@ class ListingsController < ApplicationController
   def upvote
     @listing = Listing.find_by_id(params[:id])
     @listing.upvote_from current_user
+    flash[:success] = "Successfully added to your favorites"
     redirect_to show_listing_path(@listing)
   end
 
   def downvote
     @listing = Listing.find_by_id(params[:id])
     @listing.downvote_from current_user
-    redirect_to show_listing_path(@listing)
+    # redirect_to show_listing_path(@listing)
+    flash[:success] = "Successfully removed from your favorites"
+    redirect_to request.referer
   end
 
   def send_email_notification

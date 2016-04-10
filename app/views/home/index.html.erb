@@ -47,7 +47,7 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li>
+                            <!--     <li>
                                     <div class="collapsible-header active"><i class="fa fa-barcode"></i>Room Features(Amenities)</div>
                                     <div class="collapsible-body" style="padding: 15px;">
                                         <ul>
@@ -57,7 +57,7 @@
                                                 </li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> -->
 
                             </ul>
 
@@ -79,20 +79,12 @@
 
           <div class="row">
            <span style="display: block">Set Filters</span>
-          <div class="col m3">
-             <select class="" ng-model="rentOrder" material-select watch>
-              <option value="0" >Rent: Low to High</option>
-              <option value="1">Rent: High to Low</option>
-            </select>
-          </div>
-            <div class="col m3">
-             <select class="" ng-model="postedOrder" material-select watch>
-              <option >Posted: Recently</option>
-              <option>Posted: Week ago</option>
-              <option>Posted: Month ago</option>
-            </select>
-          </div>
-           
+              <div class="col m3">
+                 <select class="" ng-model="rentOrder" material-select watch>
+                  <option value="0" >Rent: Low to High</option>
+                  <option value="1">Rent: High to Low</option>
+                </select>
+              </div>
           </div>    
        
           <div class="card-panel grey lighten-5" style="padding: 10px" ng-repeat="listing in listings | filter:searchText | filter:ListingCity | filter:filterRange | limitTo:limit | orderBy : rentorder | filter:amenityFilter" >
