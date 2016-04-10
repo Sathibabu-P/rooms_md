@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   end
 
   resources :home
-
+ 
+  get "/destroy_multiple_messages" => "user_dashboard#destroy_message"
   
   put "like" => "listings#upvote", as:'like_listing'
   put "dislike" => "listings#downvote",as:'dislike_listing'
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
  
   get 'user_dashboard' => 'user_dashboard#index'
   get 'user_messages' => 'user_dashboard#messages'
+  get 'show_message/:id' => 'user_dashboard#show_message'
   get 'favorites' => 'user_dashboard#favorites'
 
   get '/admin' => 'dashboard#index'

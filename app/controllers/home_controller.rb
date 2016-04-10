@@ -49,7 +49,9 @@ class HomeController < ApplicationController
   	@listing = Listing.find(params[:message][:listing_id])
   	@message = @listing.messages.build(message_params)
   	if @message.save
-  		@message.update_attributes(:user_id => @listing.user.id) 
+  		@message.update_attributes(:user_id => @listing.user.id) if @listing.user.present?
+      @message.update_attributes(:admin_id => @listing.admin.id) if @listing.admin.present?
+      flash[:success] = "Your Message has been successfully posted.."
   	end
   	redirect_to show_listing_url(@listing)
   end

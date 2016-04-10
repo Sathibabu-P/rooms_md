@@ -12,14 +12,26 @@ class UserDashboardController < ApplicationController
     @user = current_user
   end
   def messages
-  	@messages = current_user.messages
+  	@messages = current_user.messages.order("created_at DESC").paginate(:per_page => 10, :page => params[:page])
+  end
+
+  def show_message
+    @message = Message.find(params[:id])
+  end
+
+  def destroy_message
+    @messages = Message.find(params[:ids])
+    @messages.each do |msg|
+      msg.destroy
+    end
+     flash[:success] = "Messages are successfully deleted..."
+     render :js =>  '/user_messages'
   end
 
 
 
   def update_password 
      @user = User.find(current_user.id)
-     
     if @user.update(user_params)
       # Sign in the user by passing validation in case their password changed
       sign_in @user, :bypass => true
