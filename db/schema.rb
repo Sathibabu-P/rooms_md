@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160326044022) do
 
   create_table "listings", force: :cascade do |t|
     t.string   "title",                  limit: 255
-    t.string   "description",            limit: 255
+    t.text     "description",            limit: 65535
     t.string   "room_type",              limit: 255
     t.string   "bedrooms",               limit: 255
     t.string   "rent",                   limit: 255
@@ -86,20 +86,21 @@ ActiveRecord::Schema.define(version: 20160326044022) do
     t.boolean  "phonenumber_visibility", limit: 1
     t.string   "security_deposit",       limit: 255
     t.string   "furnishing_status",      limit: 255
-    t.boolean  "visible_status",         limit: 1,   default: false
-    t.boolean  "verified_status",        limit: 1,   default: false
+    t.boolean  "visible_status",         limit: 1,     default: false
+    t.boolean  "verified_status",        limit: 1,     default: false
+    t.boolean  "status",                 limit: 1,     default: false
     t.integer  "user_id",                limit: 4
     t.integer  "admin_id",               limit: 4
     t.integer  "city_id",                limit: 4
     t.integer  "area_id",                limit: 4
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.string   "image_url",              limit: 255, default: "null"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.string   "image_url",              limit: 255,   default: "null"
     t.integer  "up_votes",               limit: 4
     t.integer  "down_votes",             limit: 4
     t.integer  "avgrating",              limit: 4
     t.integer  "views",                  limit: 4
-    t.string   "time_ago",               limit: 255, default: "null"
+    t.string   "time_ago",               limit: 255,   default: "null"
   end
 
   add_index "listings", ["admin_id"], name: "index_listings_on_admin_id", using: :btree
@@ -118,12 +119,13 @@ ActiveRecord::Schema.define(version: 20160326044022) do
   create_table "messages", force: :cascade do |t|
     t.integer  "listing_id", limit: 4
     t.integer  "user_id",    limit: 4
+    t.integer  "admin_id",   limit: 4
     t.string   "name",       limit: 255
     t.string   "phoneno",    limit: 255
-    t.string   "message",    limit: 255
-    t.boolean  "status",     limit: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.text     "message",    limit: 65535
+    t.boolean  "status",     limit: 1,     default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "overall_averages", force: :cascade do |t|
@@ -151,18 +153,18 @@ ActiveRecord::Schema.define(version: 20160326044022) do
     t.string   "gender",               limit: 255
     t.string   "dob",                  limit: 255
     t.string   "occupation",           limit: 255
-    t.string   "address",              limit: 255
-    t.string   "about",                limit: 255
+    t.text     "address",              limit: 65535
+    t.text     "about",                limit: 65535
     t.integer  "user_id",              limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.string   "picture_file_name",    limit: 255
     t.string   "picture_content_type", limit: 255
     t.integer  "picture_file_size",    limit: 4
     t.datetime "picture_updated_at"
-    t.boolean  "profile_visible",      limit: 1,   default: false
-    t.boolean  "email_notification",   limit: 1,   default: false
-    t.boolean  "message_notification", limit: 1,   default: false
+    t.boolean  "profile_visible",      limit: 1,     default: false
+    t.boolean  "email_notification",   limit: 1,     default: false
+    t.boolean  "message_notification", limit: 1,     default: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :home
  
   get "/destroy_multiple_messages" => "user_dashboard#destroy_message"
+  get "/destroy_messages" => "dashboard#destroy_message"
   
   put "like" => "listings#upvote", as:'like_listing'
   put "dislike" => "listings#downvote",as:'dislike_listing'

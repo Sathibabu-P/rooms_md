@@ -4,5 +4,6 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable,  :trackable, :validatable
 
-   has_many :listings      
+   has_many :listings  
+   has_many :messages      
 end

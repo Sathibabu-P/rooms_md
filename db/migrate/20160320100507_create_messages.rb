@@ -3,10 +3,11 @@ class CreateMessages < ActiveRecord::Migration
     create_table :messages do |t|
       t.belongs_to :listing
       t.belongs_to :user
+      t.belongs_to :admin
       t.string :name
       t.string :phoneno
-      t.string :message
-      t.boolean :status
+      t.text :message
+      t.boolean :status, default: false
       t.timestamps null: false
     end
   end

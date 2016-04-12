@@ -12,20 +12,7 @@
     <div class="col s12 m3" style="">
     
         
-          <ul class="collection">
-            <li class="collection-item">
-              <i class="material-icons right">picture_in_picture</i><%= link_to "Profile", user_dashboard_path %>
-            </li>
-            <li class="collection-item">
-              <i class="material-icons right">email</i><%= link_to "Messages", user_messages_path %>
-            </li>
-             <li class="collection-item">
-              <i class="material-icons right">subtitles</i><%= link_to "Listings", listings_path %>
-            </li>         
-            <li class="collection-item">
-              <i class="material-icons right">stars</i><%= link_to "Favorites", favorites_path %>
-            </li>
-          </ul>
+          <%=render 'navigation' %>
          
      
     </div>
@@ -69,13 +56,13 @@
                           <table class="list bordered highlight">
                             <thead>
                               <tr>
-                                <th colspan="2" class="first">Today</th>
+                                <th colspan="2" class="first"></th>
                               </tr>
                             </thead>
                             <tbody>
 
                               <% @messages.each do |msg| %>
-                              <tr class="unreaded">
+                              <tr class="<%=msg.status == true ? 'readed' : 'unreaded' %>">
                                 <td class="check-col"><input type="checkbox" id="<%=msg.id%>" class="filled-in" name="messages" value="<%=msg.id%>">
                                   <label for="<%=msg.id%>"></label></td>
                                 <td><a href="/show_message/<%=msg.id%>" class="cell-row">
@@ -122,11 +109,15 @@ $('#destroy').click(function  (argument) {
   });
   if(ids.length > 0){
     $.ajax({
-       type: "GET",// GET in place of POST
-       contentType: "application/json; charset=utf-8",
+       type: "GET",// GET in place of POST      
        url: "/destroy_multiple_messages",
        data : {ids:ids}
   });
   }  
 })
 </script>
+<style type="text/css">
+.readed{
+  background-color: #F5FCFF;
+}
+</style>

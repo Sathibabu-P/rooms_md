@@ -2,7 +2,7 @@ class CreateListings < ActiveRecord::Migration
   def change
     create_table :listings do |t|
       t.string :title
-      t.string :description
+      t.text :description
       t.string :room_type
       t.string :bedrooms
       t.string :rent
@@ -19,6 +19,7 @@ class CreateListings < ActiveRecord::Migration
       t.string :furnishing_status
       t.boolean :visible_status, default: false
       t.boolean :verified_status, default: false
+      t.boolean :status, default: false
       t.belongs_to :user, index: true
       t.belongs_to :admin, index: true
       t.belongs_to :city, index: true

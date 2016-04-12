@@ -5,6 +5,17 @@ layout 'admin'
   end
 
   def messages
-  	@messages = Message.all
+  	@messages = current_admin.messages.all
   end
+
+  def destroy_message
+    @messages = Message.find(params[:ids])
+    @messages.each do |msg|
+      msg.destroy
+    end
+     flash[:success] = "Messages are successfully deleted."     
+     render :js => "window.location = '/messages'" 
+  end
+
+
 end

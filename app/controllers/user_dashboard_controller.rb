@@ -1,6 +1,7 @@
 class UserDashboardController < ApplicationController
 	before_filter :authenticate_user! 
   before_action :password_filed , only: [:update_password]
+  before_action :get_unread_messages
   include ActionView::Helpers::DateHelper
   def index
   	@profile = current_user.profile 
@@ -11,12 +12,13 @@ class UserDashboardController < ApplicationController
   	end
     @user = current_user
   end
-  def messages
-  	@messages = current_user.messages.order("created_at DESC").paginate(:per_page => 10, :page => params[:page])
+  def messages    
+  	@messages = current_user.messages.order("created_at DESC").paginate(:per_page => 5, :page => params[:page])
   end
 
   def show_message
     @message = Message.find(params[:id])
+    @message.update_attributes(:status => true)
   end
 
   def destroy_message
@@ -24,8 +26,8 @@ class UserDashboardController < ApplicationController
     @messages.each do |msg|
       msg.destroy
     end
-     flash[:success] = "Messages are successfully deleted..."
-     render :js =>  '/user_messages'
+     flash[:success] = "Messages are successfully deleted."
+     render :js => "window.location = '/user_messages'" 
   end
 
 
@@ -59,6 +61,10 @@ class UserDashboardController < ApplicationController
   def user_params
     # NOTE: Using `strong_parameters` gem
     params.require(:user).permit(:email,:password, :password_confirmation,:current_password)
+  end
+
+  def get_unread_messages
+    @unread = current_user.messages.where(:status => nil).length
   end
 
 

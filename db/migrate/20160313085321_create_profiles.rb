@@ -7,8 +7,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :gender
       t.string :dob
       t.string :occupation
-      t.string :address
-      t.string :about
+      t.text :address
+      t.text :about
       t.belongs_to :user, index: true
       t.timestamps null: false
     end
