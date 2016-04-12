@@ -55,21 +55,21 @@
                         <input type="date" class="datepicker" id="profile_dob" name="profile[dob]">
                        <label for="dob">DateofBirth</label>
 
-                     <%#= f.input :dob, class: "form-control" %>
+                     <%#= f.input :dob %>
                     </div>
                     <div class="input-field">
-                      <%= f.input :phone_no, class: "form-control" %>
+                      <%= f.input :phone_no %>
                     </div>                    
                      <div class="input-field">
                       <%= f.input :occupation, collection: [  "Student", "Employee", "Others" ], prompt: "Select occupation", selected: @profile.occupation, label: false %>  
                     </div>
                      <div class="input-field">
-                     <%= f.input :address, class: "form-control" %>
+                     <%= f.input :address,  :input_html => { :class => "materialize-textarea" }  %>
                     </div>
                    
                     <div class="input-field">
                       <div class="input-field">
-                     <%= f.input :about, class: "form-control" %>
+                     <%= f.input :about, :input_html => { :class => "materialize-textarea" }  %>
                     </div>
                     </div>
                     
