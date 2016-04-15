@@ -41,7 +41,7 @@ gem 'ratyrate'
 gem 'angularjs-rails'
 
 gem 'jquery-dynatable-rails'
-
+gem 'best_in_place', '~> 3.0.1'
 gem 'jquery-turbolinks'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'client_side_validations'

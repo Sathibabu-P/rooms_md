@@ -13,9 +13,12 @@
  <div class="row"> 
    <div class="col s12 m12">   
    <div class="card-panel grey lighten-5 z-depth-1">
-          <%= link_to 'New City', new_city_path, :class => 'btn-floating btn-small waves-effect waves-light ' %>
-          <a class="waves-effect waves-light btn-floating modal-trigger" href="#modal1">Import</a>
-          <%= link_to "Excel", cities_path(format: "xls") , :class => 'btn-floating btn-small waves-effect waves-light ' %>
+          <%= link_to  new_city_path, :class => 'btn-floating btn-small waves-effect waves-light' do%>
+          <i class="mdi-content-add-circle"></i><%end%>
+          <a class="waves-effect waves-light btn-floating modal-trigger" href="#modal1">
+            <i class="mdi-action-get-app"></i></a>
+          <%= link_to cities_path(format: "xls") , :class => 'btn-floating btn-small waves-effect waves-light ' do%>
+          <i class="mdi-editor-publish"></i><%end%>
         </div>
     </div>
     <div class="col s12 m12">    
@@ -32,10 +35,14 @@
           <tbody>
             <% @cities.each do |city| %>
               <tr>
-                <td><%= city.name %></td>
+                <td>
+                  <%= best_in_place city, :name, :as => :input %>
+                  <%#= city.name %></td>
                
-                <td><%= link_to 'Edit', edit_city_path(city) %>
-                <%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%#= link_to  edit_city_path(city) do%>
+                  <!-- <i class="mdi-content-create"></i> --><%#end%>
+                <%= link_to  city, method: :delete, data: { confirm: 'Are you sure?' } do%> 
+                 <i class="mdi-action-delete"></i><%end%></td>
               </tr>
             <% end %>
           </tbody>
