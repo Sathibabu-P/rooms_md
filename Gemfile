@@ -39,7 +39,8 @@ gem 'ratyrate'
 # gem 'jquery-datatables-rails', '~> 3.3.0'
 
 gem 'angularjs-rails'
-
+gem 'social-share-button', '~> 0.2.0'
+# gem 'shareable'
 gem 'jquery-dynatable-rails'
 gem 'best_in_place', '~> 3.0.1'
 gem 'jquery-turbolinks'

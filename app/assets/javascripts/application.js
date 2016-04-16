@@ -27,6 +27,7 @@
 //= require anguler_nouislider.js
 //= require ngtimeago
 //= require home
+//= require social-share-button
 
 
 
