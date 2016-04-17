@@ -3,6 +3,7 @@ class UserDashboardController < ApplicationController
   before_action :password_filed , only: [:update_password]
   before_action :get_unread_messages
   include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::TagHelper
   def index
   	@profile = current_user.profile 
   	unless @profile.present?
@@ -37,8 +38,10 @@ class UserDashboardController < ApplicationController
     if @user.update(user_params)
       # Sign in the user by passing validation in case their password changed
       sign_in @user, :bypass => true
+      flash[:success] = "Your password is successfully updated."
       redirect_to user_profile_url
     else
+     flash[:error] = @user.errors.full_messages.join(", ")
      redirect_to user_profile_url
     end
   end
@@ -47,12 +50,12 @@ class UserDashboardController < ApplicationController
     @listings = current_user.votes.up.for_type(Listing).votables
   end
 
-  
+
 
   private
 
   def password_filed
-    if params[:user][:password].blank? || params[:user][:password_confirmation].blank?    
+    if params[:user][:password].blank?
     params[:user].delete(:password)
     params[:user].delete(:password_confirmation)
     end

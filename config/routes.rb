@@ -2,6 +2,16 @@ Rails.application.routes.draw do
 
  
 
+  resources :subscriptions
+
+
+  get "/subscriptions/:id" => "subscriptions#show"
+  # post "/hook" => "subscriptions#hook"
+  
+  resources :plans do
+    collection { post :import }
+    resources :subscriptions
+  end
   get '/users' => "users#index"
 
   post '/rate' => 'rater#create', :as => 'rate'

@@ -52,7 +52,7 @@
                       <%= f.input :gender, collection: [  "Male", "Female"], prompt: "Select Gender", selected: @profile.gender, label: false %>  
                     </div>
                     <div class="input-field">
-                        <input type="date" class="datepicker" id="profile_dob" name="profile[dob]">
+                        <input type="date" class="datepicker" id="profile_dob" name="profile[dob]" value="<%=@profile.dob%>">
                        <label for="dob">DateofBirth</label>
 
                      <%#= f.input :dob %>

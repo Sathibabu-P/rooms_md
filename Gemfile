@@ -37,7 +37,7 @@ gem 'public_activity'
 gem 'friendly_id'
 gem 'ratyrate'
 # gem 'jquery-datatables-rails', '~> 3.3.0'
-
+# gem 'stripe'
 gem 'angularjs-rails'
 gem 'social-share-button', '~> 0.2.0'
 # gem 'shareable'

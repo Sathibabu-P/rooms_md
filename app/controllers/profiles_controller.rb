@@ -2,7 +2,11 @@ class ProfilesController < ApplicationController
   before_filter :authenticate_user!
  def update
 		 @profile = Profile.find(params[:id])
-		 @profile.update_attributes(profile_params)		 
+		 if @profile.update_attributes(profile_params)
+      flash[:error] = 'Your profile is successfully updated.'
+     else
+      flash[:error] = @profile.errors.full_messages.join(", ")
+     end		 
 		 redirect_to user_profile_path    
  end
 

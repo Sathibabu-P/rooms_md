@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326044022) do
+ActiveRecord::Schema.define(version: 20160416054501) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",              limit: 255, default: "", null: false
@@ -146,6 +146,18 @@ ActiveRecord::Schema.define(version: 20160326044022) do
     t.datetime "file_updated_at"
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string   "title",         limit: 255
+    t.float    "price",         limit: 24
+    t.integer  "duration",      limit: 4
+    t.string   "duration_type", limit: 255
+    t.text     "description",   limit: 65535
+    t.boolean  "status",        limit: 1
+    t.integer  "limit",         limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string   "first_name",           limit: 255
     t.string   "last_name",            limit: 255
@@ -199,6 +211,20 @@ ActiveRecord::Schema.define(version: 20160326044022) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "plan_id",             limit: 4
+    t.integer  "user_id",             limit: 4
+    t.string   "email",               limit: 255
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.text     "notification_params", limit: 65535
+    t.string   "status",              limit: 255
+    t.string   "transaction_id",      limit: 255
+    t.datetime "purchased_at"
+  end
+
+  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
 
   create_table "user_providers", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
