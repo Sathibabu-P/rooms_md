@@ -17,5 +17,9 @@ layout 'admin'
      render :js => "window.location = '/messages'" 
   end
 
+  def subscriptions
+    @subscriptions = Subscription.all
+  end
+
 
 end

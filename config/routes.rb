@@ -59,6 +59,9 @@ Rails.application.routes.draw do
   get 'show_message/:id' => 'user_dashboard#show_message'
   get 'favorites' => 'user_dashboard#favorites'
 
+
+  get 'adminsubscriptions' => 'dashboard#subscriptions', as: 'adminsubscriptions'
+
   get '/admin' => 'dashboard#index'
 
   delete '/delpic' => "listings#delpic"
