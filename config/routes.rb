@@ -16,7 +16,10 @@ Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :admins
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks"}
+  devise_for :users, controllers: {
+         # registrations: 'users/registrations',
+        :omniauth_callbacks => "omniauth_callbacks"
+      }
 
   
   get 'profiles/edit'
