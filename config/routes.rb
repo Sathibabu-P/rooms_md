@@ -75,6 +75,7 @@ Rails.application.routes.draw do
 
 
    get '/change_listing_status' => "admin_listings#change_listing_status"
+   get '/change_plan_status' => "plans#change_plan_status"
 
    get '/messages' => "dashboard#messages"
 

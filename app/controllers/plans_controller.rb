@@ -1,7 +1,7 @@
 class PlansController < ApplicationController
-  before_filter :authenticate_admin!, except: [:area_list]
+  before_filter :authenticate_admin!
   layout 'admin'
-  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:show, :edit, :update, :destroy, :change_plan_status]
 
   # GET /plans
   # GET /plans.json
@@ -71,6 +71,11 @@ class PlansController < ApplicationController
       format.html { redirect_to plans_url, notice: 'Plan was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def change_plan_status
+    @plan.update_attributes(:status => params[:value]) if @plan.present?
+    render :text => 'success'
   end
 
   private

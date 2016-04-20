@@ -24,6 +24,8 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Listings limit</th>
+              <th>Duration</th>
               <th>Price</th>
               <th>Status</th>
               <th>Actions</th>
@@ -34,8 +36,19 @@
             <% @plans.each do |plan| %>
               <tr>
                 <td><%=plan.title%></td>
+                <td><%=plan.limit%></td>
+                <td><%="#{plan.duration} #{plan.duration_type}"%></td>
                 <td><%=plan.price%></td>
-                <td><%=plan.status%></td>
+                <td>
+                    <div class="switch">
+                      <label>
+                       
+                        <input type="checkbox"  <%= plan.status ? 'checked' : 'unchecked' %> data-id = "<%= plan.id %>" class="status">
+                        <span class="lever"></span>
+                        
+                      </label>
+                    </div>
+                </td>
                 <td><%#= link_to 'Show', plan %>
                     <%= link_to 'Edit', edit_plan_path(plan) %>
                     <%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -82,7 +95,26 @@
 <script type="text/javascript">
 
       $( document ).ready(function() {     
-        $('#plans').dynatable();
+        $('#listings').dynatable();
       });
+
+      $(document).ready(function() {
+          $('.status').change(function() {
+                           
+                  var id = $(this).data("id");
+                  $.ajax({
+                       type: "GET",// GET in place of POST
+                       contentType: "application/json; charset=utf-8",
+                       url: "/change_plan_status",
+                       data : {id:id, value: $(this).is(":checked") },
+                       dataType: "json"
+                  });
+                  
+          });
+      });
+
 </script>
+<style type="text/css">
+.switch label .lever { background-color: #E7230A;}
+</style>
     

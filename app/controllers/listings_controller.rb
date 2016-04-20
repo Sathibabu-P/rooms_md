@@ -21,8 +21,17 @@ class ListingsController < ApplicationController
 
   # GET /listings/new
   def new
-    @listing = Listing.new   
-    @pictures = @listing.pictures
+   
+    # subsciption = Subsciption.find_by_id(current_user.subsciption_id) 
+    # limit = subsciption.limit
+    count = current_user.listings.count
+    if count > 0
+      flash[:error] = "Free user account has been restricted to only one listing.Please choose the below plan to upgrade your account."
+      redirect_to subscriptions_url
+    else
+       @listing = Listing.new   
+       @pictures = @listing.pictures
+    end 
   end
 
   # GET /listings/1/edit

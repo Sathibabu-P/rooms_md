@@ -1,5 +1,5 @@
 class Plan < ActiveRecord::Base
-	validates :title,:price,:description, presence: true
+	validates :title,:price,:description,:duration,:limit,:duration_type, presence: true
 	has_many :subscriptions
 
 

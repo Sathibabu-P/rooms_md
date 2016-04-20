@@ -11,7 +11,19 @@
     <%= f.input :price %>
   </div>
 </div>
-
+<div class="row">
+  <div class="input-field col s6">
+    <%= f.input :duration %>
+  </div>
+   <div class="input-field col s6">
+    <%= f.input :duration_type, collection: [ "Months", "Year" ], prompt: "Select Duration Peroid", label: false %>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.input :limit %>
+  </div>
+</div>
 <div class="row">
   <div class="input-field col s12">
     <%= f.input :description , :input_html => { :class => "materialize-textarea" }%>

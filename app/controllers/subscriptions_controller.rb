@@ -34,6 +34,7 @@ class SubscriptionsController < ApplicationController
     if status == "Completed"
       @subscription = Subscription.find params[:id]
       @subscription.update_attributes( notification_params: params, status: status, transaction_id: params[:tx], purchased_at: Time.now)
+      current_user.update_attributes(:subscription_id => @subscription.id)
       flash[:success] = "Your Subscription is successfully Completed."
     else
       flash[:success] = "Error with Subscription please try after some time"

@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: rooms_production
-  username: rooms
-  password: <%= ENV['ROOMS_DATABASE_PASSWORD'] %>
+  username: root
+  password: root
