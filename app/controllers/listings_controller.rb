@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, except: [:index, :show]
+  before_action :get_unread_messages
   # after_action :send_email_notification, only: [:create]
   before_action :set_data
   # GET /listings
@@ -14,10 +15,7 @@ class ListingsController < ApplicationController
   def show
   end
 
-  def set_data
-    @amenities = Amenity.all
-    @rules = Rule.all
-  end
+  
 
   # GET /listings/new
   def new
@@ -25,7 +23,12 @@ class ListingsController < ApplicationController
     # subsciption = Subsciption.find_by_id(current_user.subsciption_id) 
     # limit = subsciption.limit
     count = current_user.listings.count
-    if count > 0
+    subsciption = Subscription.find_by_id(current_user.subscription_id)
+    plan = subsciption.plan if subsciption.present?
+    if subsciption.present? && count >= plan.limit
+      flash[:error] = "Your account has been reached maximum listings provided by the selected plan.Please choose upgraded plan for upgrade your account."
+      redirect_to subscriptions_url
+    elsif !subsciption.present? && count > 0
       flash[:error] = "Free user account has been restricted to only one listing.Please choose the below plan to upgrade your account."
       redirect_to subscriptions_url
     else
@@ -43,16 +46,16 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
      @listing = current_user.listings.build(listing_params)
-
+     subsciption = Subscription.find_by_id(current_user.subscription_id)
     respond_to do |format|
       if @listing.save
-
         if params[:pictures]
         #===== The magic is here ;)
           params[:pictures].each { |image|
             @listing.pictures.create(file: image)
           }
         end
+         # @listing.update_attributes(:featured => true) if subsciption.present?
         ListingMailer.email_notification(current_user,@listing).deliver
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
         format.json { render :show, status: :created, location: @listing }
@@ -130,6 +133,14 @@ class ListingsController < ApplicationController
       @amenities = Amenity.all
       @rules = Rule.all
       @pictures = @listing.pictures
+    end
+
+    def set_data
+      @amenities = Amenity.all
+      @rules = Rule.all
+    end
+    def get_unread_messages
+      @unread = current_user.messages.where(:status => nil).length
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

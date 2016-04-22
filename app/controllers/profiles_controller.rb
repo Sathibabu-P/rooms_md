@@ -3,7 +3,8 @@ class ProfilesController < ApplicationController
  def update
 		 @profile = Profile.find(params[:id])
 		 if @profile.update_attributes(profile_params)
-      flash[:error] = 'Your profile is successfully updated.'
+         @profile.user.update_attributes(:email => params[:email])
+         flash[:error] = 'Your profile is successfully updated.'
      else
       flash[:error] = @profile.errors.full_messages.join(", ")
      end		 
@@ -14,6 +15,7 @@ class ProfilesController < ApplicationController
  def update_settings
     @profile = current_user.profile 
     @profile.update_attributes(params[:name] => params[:value])
+
     render :text => 'success'
   end
 

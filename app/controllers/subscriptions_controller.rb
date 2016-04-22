@@ -3,13 +3,17 @@ class SubscriptionsController < ApplicationController
   before_filter :authenticate_user! 
   
   def index
-  	@plans = Plan.all
+    
+  	@plans = Plan.where(:status => true)
   end
 
   def new
   	# @subscription = Subscription.new
+    previous_subscription = Subscription.find_by_id(current_user.subscription_id)   
+    flash[:error] = "Your already Subscribed #{previous_subscription.plan.title} plan. Existing plan will be overide with new selected plan"  if previous_subscription.present?   
   	@plan = Plan.find(params[:plan_id])
   	@subscription = @plan.subscriptions.build
+   
   end
 
 
@@ -37,7 +41,7 @@ class SubscriptionsController < ApplicationController
       current_user.update_attributes(:subscription_id => @subscription.id)
       flash[:success] = "Your Subscription is successfully Completed."
     else
-      flash[:success] = "Error with Subscription please try after some time"
+      flash[:error] = "Error with Subscription please try after some time"
     end
      redirect_to user_dashboard_url   
   end

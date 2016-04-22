@@ -1,6 +1,6 @@
 class UserDashboardController < ApplicationController
 	before_filter :authenticate_user! 
-  before_action :password_filed , only: [:update_password]
+  #before_action :password_filed , only: [:update_password]
   before_action :get_unread_messages
   include ActionView::Helpers::DateHelper
   include ActionView::Helpers::TagHelper

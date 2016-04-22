@@ -18,6 +18,7 @@ class CreateListings < ActiveRecord::Migration
       t.string :security_deposit
       t.string :furnishing_status
       t.boolean :visible_status, default: false
+      t.boolean :featured, default: false
       t.boolean :verified_status, default: false
       t.boolean :status, default: false
       t.belongs_to :user, index: true

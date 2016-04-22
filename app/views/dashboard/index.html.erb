@@ -2,34 +2,8 @@
   <div class="container">
    
     <div id="dashboard">
-      <div class="row"> 
-        <!-- LINE graph START -->
-        <div class="col s12 m8">
-          <div class="card">
-          	<i class="mdi mdi-bell"></i>
-            <div class="card-header"> <span class="card-title secondary-color-text">Visitors </span> <span class="card-title soft-text"> / </span> <span class="card-title primary-color-text"> Sales</span> </div>
-            <div class="divider"></div>
-            <div class="card-content">
-              <canvas id="graph-lined" height="291" width="582" style="width: 582px; height: 291px;"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- LINE graph END --> 
-        <!--DOUGHNUT graph START -->
-        <div class="col s12 m4">
-          <div class="card">
-            <div class="card-header"> <span class="card-title cyan-text text-accent-4">New </span> <span class="card-title soft-text"> / </span> <span class="card-title amber-text text-darken-3"> Returning</span>
-              <p>Last 30 days</p>
-            </div>
-            <div class="divider"></div>
-            <div class="card-content" style="padding:40px;">
-              <canvas id="graph-doughnut" width="220" height="220" style="width: 220px; height: 220px;">
-            </canvas></div>
-          </div>
-        </div>
-        <!--DOUGHNUT graph END --> 
-      </div>
-      <div class="row"> 
+    
+    <div class="row"> 
         <!-- Total Profit BAR graph START -->
         <div class="col s12 m6 l3">
           <div class="card cyan accent-4 hoverable">
@@ -63,14 +37,41 @@
         <!-- New Users BAR graph START -->
         <div class="col s12 m6 l3">
           <div class="card primary-color hoverable">
-            <div class="card-content"> <span class="card-title white-text countup" data-from="2" data-to="45" data-speed="1000">45</span>
-              <p class="white-text">New Users</p>
+            <div class="card-content"> <span class="card-title white-text countup" ><%=User.all.count%></span>
+              <p class="white-text">Total Registred Users</p>
               <canvas id="graph-bar4" height="59" width="179" style="width: 179px; height: 59px;"></canvas>
             </div>
           </div>
         </div>
         <!-- New Users BAR graph END --> 
-      </div>
+    </div>
+    <div class="row"> 
+        <!-- LINE graph START -->
+        <div class="col s12 m8">
+          <div class="card">
+          	<i class="mdi mdi-bell"></i>
+            <div class="card-header"> <span class="card-title secondary-color-text">Visitors </span> <span class="card-title soft-text"> / </span> <span class="card-title primary-color-text"> Sales</span> </div>
+            <div class="divider"></div>
+            <div class="card-content">
+              <canvas id="graph-lined" height="291" width="582" style="width: 582px; height: 291px;"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- LINE graph END --> 
+        <!--DOUGHNUT graph START -->
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-header"> <span class="card-title cyan-text text-accent-4">New </span> <span class="card-title soft-text"> / </span> <span class="card-title amber-text text-darken-3"> Returning</span>
+              <p>Last 30 days</p>
+            </div>
+            <div class="divider"></div>
+            <div class="card-content" style="padding:40px;">
+              <canvas id="graph-doughnut" width="220" height="220" style="width: 220px; height: 220px;">
+            </canvas></div>
+          </div>
+        </div>
+        <!--DOUGHNUT graph END --> 
+    </div>
       <div class="row"> 
         <!-- Latest Tasks START -->
         <div class="col s12 m6">
